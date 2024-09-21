@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customers</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.css">
-    <link rel="stylesheet" href="./assets/css/fontawesome.min.css">
+@extends('layouts.master')
 
-</head>
-<body>
 
+@section('content')
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <h3>Customers</h3>
@@ -37,7 +29,7 @@
                         </div>
                     </div>
                     </div>
-                      
+
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered" style="border: 1px solid #dddddd">
@@ -47,37 +39,36 @@
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
                             <th scope="col">Date of Birth</th>
-                            <th scope="col">Phone Number</th>
                             <th scope="col">Email</th>
-                            <th scope="col">BAN</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col">Credit Card</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Jhone</td>
-                            <td>Deo</td>
-                            <td>7-7-2000</td>
-                            <td>881-6929-0200</td>
-                            <td>jhone@gmail.com</td>
-                            <td>1902982829282</td>
-                            <td>
-                                <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
-                                <a href="/customer-details.html" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-eye"></i></a>
-                                <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                          </tr>
-                          
+                            @foreach($customer as $customer)
+                                <tr>
+                                    <th scope="row">{{ $customer->id }}</th>
+                                    <td>{{ $customer->name }}</td>
+                                    <td>{{ $customer->last_name }}</td>
+                                    <td>{{ $customer->created_at }}</td>
+                                    <td>{{ $customer->email }}</td>
+                                    <td>{{ $customer->phone }}</td>
+                                    <td>{{ $customer->card_number }}</td>
+                                    <td>
+                                        <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('customer.show', $customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-eye"></i></a>
+                                        <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i
+                                                class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
                         </tbody>
                       </table>
                 </div>
             </div>
         </div>
     </div>
-    <script src="./assets/js/jquery.js"></script>
-    <script src="./assets/js/bootstrap.bundle.js"></script>
-    <script src="./assets/js/fontawesome.js"></script>
-
-</body>
-</html>
+@endsection
