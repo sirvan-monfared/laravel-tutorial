@@ -7,11 +7,10 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::all();
         return view('customer.index', [
-            'customer' => $customers
+            'customer' => Customer::filter($request->keyword, $request->order_by)
         ]);
     }
 
@@ -26,11 +25,42 @@ class CustomerController extends Controller
 
     public function create()
     {
-        return view('customer.create');
+        return view('customer.create', [
+            'customer' => new Customer
+        ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        dd('yess');
+        Customer::create($request->all());
+
+        return back();
+    }
+
+    public function edit($id)
+    {
+        $customer = Customer::findOrFail($id);
+
+        return view('customer.edit', [
+            'customer' => $customer
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $customer = Customer::findOrFail($id);
+
+        $customer->update($request->all());
+
+        return back();
+    }
+
+    public function destroy($id)
+    {
+        $customer = Customer::findOrFail($id);
+
+        $customer->delete();
+
+        return back();
     }
 }

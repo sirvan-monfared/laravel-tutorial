@@ -7,9 +7,18 @@ Route::get('/', function() {
    return redirect()->route('customer.index');
 });
 
-Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
-Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
-Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('customer.show');
-Route::post('/customer', [CustomerController::class, 'store'])->name('customer.store');
+Route::resource('customer', CustomerController::class);
+
+
+//Route::prefix('customer')->controller(CustomerController::class)->name('customer.')->group(function() {
+//    Route::get('/', 'index')->name('index');
+//    Route::get('/create', 'create')->name('create');
+//    Route::get('/{id}', 'show')->name('show');
+//    Route::post('/', 'store')->name('store');
+//    Route::get('/{id}/edit', 'edit')->name('edit');
+//    Route::put('/{id}', 'update')->name('update');
+//    Route::delete('/{id}', 'destroy')->name('destroy');
+//});
+
 
 

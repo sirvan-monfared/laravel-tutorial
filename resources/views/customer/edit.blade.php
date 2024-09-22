@@ -3,7 +3,7 @@
 @section('content')
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <h3>Customers</h3>
+            <h3>Edit Customer</h3>
             <div class="card">
                 <div class="card-header">
                     <div class="row">
@@ -17,10 +17,15 @@
 
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('customer.store') }}">
+                    <form method="POST" action="{{ route('customer.update', $customer->id) }}">
+                        @method('PUT')
                         @csrf
-                        @include('customer._form')
+
+                        @include('customer._form', [
+                            'button_title' => 'Update'
+                        ])
                     </form>
+
                 </div>
             </div>
         </div>

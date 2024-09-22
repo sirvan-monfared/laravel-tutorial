@@ -16,5 +16,7 @@
     <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/fontawesome.js') }}"></script>
 
+    @stack('js')
+
 </body>
 </html>
