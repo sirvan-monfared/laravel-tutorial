@@ -12,11 +12,10 @@
 
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="{{ route('customer.create') }}" class="btn"
-                                   style="background-color: #4643d3; color: white;"><i class="fas fa-plus"></i> Create
-                                    Customer</a>
+                                <a href="{{ route('customer.index') }}" class="btn"
+                                   style="background-color: #4643d3; color: white;"><i class="fas fa-chevron-left"></i> Back</a>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="input-group mb-3">
                                     <input type="text" name="keyword" class="form-control"
                                            placeholder="Search anything..." aria-describedby="button-addon2" value="{{ request()->keyword }}">
@@ -31,9 +30,6 @@
                                         <option value="asc" @selected(request()->order_by === 'asc')>Old to Newest</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="col-md-2 text-end">
-                                <a href="{{ route('customer.trashed.index') }}" class="btn btn-secondary"><i class="fas fa-trash"></i> Trash</a>
                             </div>
                         </div>
 
@@ -66,11 +62,18 @@
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->card_number }}</td>
                                 <td style="display:flex; justify-content: center; align-items: center">
-                                    <a href="{{ route('customer.edit', $customer->id) }}" style="color: #2c2c2c;"
-                                       class="ms-1 me-1"><i class="far fa-edit"></i></a>
-                                    <a href="{{ route('customer.show', $customer->id) }}" style="color: #2c2c2c;"
-                                       class="ms-1 me-1"><i class="far fa-eye"></i></a>
-                                    <form method="POST" action="{{ route('customer.destroy', $customer->id) }}">
+                                    <form method="POST" action="{{ route('customer.trashed.restore', $customer->id) }}">
+                                        @method('PATCH')
+                                        @csrf
+
+                                        <button type="submit"
+                                                style="color: #2c2c2c; background: none; border: none; outline: none"
+                                                class="ms-1 me-1">
+                                            <i class="fas fa-redo"></i>
+                                        </button>
+                                    </form>
+
+                                    <form method="POST" action="{{ route('customer.trashed.destroy', $customer->id) }}">
                                         @method('DELETE')
                                         @csrf
 

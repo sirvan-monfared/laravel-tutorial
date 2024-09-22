@@ -10,7 +10,7 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         return view('customer.index', [
-            'customer' => Customer::filter($request->keyword, $request->order_by)
+            'customers' => Customer::filter($request->keyword, $request->order_by)
         ]);
     }
 

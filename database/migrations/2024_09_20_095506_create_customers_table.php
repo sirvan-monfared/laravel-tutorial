@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('card_number')->nullable();
             $table->text('biography')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
