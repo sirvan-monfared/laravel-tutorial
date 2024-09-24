@@ -17,6 +17,13 @@
 
                 </div>
                 <div class="card-body">
+
+{{--                    @if($errors->any())--}}
+{{--                        @foreach($errors->all() as $error)--}}
+{{--                            <p class="alert alert-danger">{{ $error }}</p>--}}
+{{--                        @endforeach--}}
+{{--                    @endif--}}
+
                     <form method="POST" action="{{ route('customer.store') }}">
                         @csrf
                         @include('customer._form')
