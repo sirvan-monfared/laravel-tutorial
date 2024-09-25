@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TrashedCustomerController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function() {
    return redirect()->route('customer.index');
@@ -13,17 +15,5 @@ Route::delete('/customer/trashed/{id}', [TrashedCustomerController::class, 'dest
 Route::patch('/customer/trashed/{id}', [TrashedCustomerController::class, 'restore'])->name('customer.trashed.restore');
 
 Route::resource('customer', CustomerController::class);
-
-
-//Route::prefix('customer')->controller(CustomerController::class)->name('customer.')->group(function() {
-//    Route::get('/', 'index')->name('index');
-//    Route::get('/create', 'create')->name('create');
-//    Route::get('/{id}', 'show')->name('show');
-//    Route::post('/', 'store')->name('store');
-//    Route::get('/{id}/edit', 'edit')->name('edit');
-//    Route::put('/{id}', 'update')->name('update');
-//    Route::delete('/{id}', 'destroy')->name('destroy');
-//});
-
 
 

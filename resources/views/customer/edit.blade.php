@@ -17,6 +17,12 @@
 
                 </div>
                 <div class="card-body">
+
+                    @session('success')
+                        <div class="alert alert-success">{{ $value }}</div>
+                    @endsession
+
+
                     <form method="POST" action="{{ route('customer.update', $customer->id) }}">
                         @method('PUT')
                         @csrf

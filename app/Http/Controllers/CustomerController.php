@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -31,25 +32,16 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-        $validated_data = $request->validate([
-            'name' => ['required', 'min:3', 'max:255'],
-            'last_name' => ['required', 'min:5', 'max:255'],
-            'email' => ['required', 'email', Rule::unique('customers', 'email')],
-            'phone' => ['required', 'digits:11', Rule::unique('customers', 'phone')],
-            'card_number' => ['nullable', 'digits:16'],
-            'biography' => []
-        ]);
+        Customer::create($request->validated());
 
-
-        Customer::create($validated_data);
-
-        return back();
+        return back()->with('success', 'Operation Was Successful');;
     }
 
     public function edit($id)
     {
+//        session()->flush();
         $customer = Customer::findOrFail($id);
 
         return view('customer.edit', [
@@ -57,32 +49,13 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function update($id, Request $request)
+    public function update($id, CustomerRequest $request)
     {
-        $validated_data = $request->validate([
-            'name' => ['required', 'min:5', 'max:255'],
-            'last_name' => ['required', 'min:5', 'max:255'],
-            'email' => ['required', 'email', Rule::unique('customers', 'email')->ignore($id)],
-            'phone' => ['required', 'digits:11', Rule::unique('customers', 'phone')->ignore($id)],
-            'card_number' => ['nullable', 'digits:16'],
-            'biography' => []
-        ], [
-            'name.required' => 'وارد کردن نام ضروری است',
-            'name.min' => 'نام وارد شده باید حداقل :min کاراکتر باشد',
-            'name.max' => 'نام وارد شده باید حداکثر :max کاراکتر باشد',
-            'last_name.required' => 'وارد کردن نام خانوادگی ضروری است',
-            'last_name.min' => 'نام خانوادگی وارد شده باید حداقل :min کاراکتر باشد',
-            'last_name.max' => 'نام خانوادگی وارد شده باید حداکثر :max کاراکتر باشد',
-            'email.unique' => 'ایمیل توسط کاربر دیگری استفاده شده است',
-            'email.*' => 'ایمیل وارد شده معتبر نیست',
-        ]);
-
-
         $customer = Customer::findOrFail($id);
 
         $customer->update($request->all());
 
-        return back();
+        return back()->with('success', 'Operation Was Successful');
     }
 
     public function destroy($id)
