@@ -20,6 +20,13 @@ class DatabaseSeeder extends Seeder
 //            'name' => 'Test User',
 //            'email' => 'test@example.com',
 //        ]);
-        Address::factory(5)->create();
+//        Address::factory(5)->create();
+
+        $users = User::factory(5)->create();
+        foreach ($users as $user) {
+            Address::factory(rand(2, 5))->create([
+                'user_id' => $user->id
+            ]);
+        }
     }
 }

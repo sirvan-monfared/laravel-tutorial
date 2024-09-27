@@ -1,16 +1,17 @@
 <?php
 
 use App\Models\Address;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-//    $user = User::find(2);
+//    $post = \App\Models\Post::first();
 //
-///    dd($user->address->city);
-///
-        $address =  Address::find(3);
-        dump($address->user_id);
-        dd($address->user);
+//    dd($post->tags->pluck('name'));
+
+//    $tag = Tag::find(3);
+//
+//    dd($tag->posts->pluck('title'));
 });
