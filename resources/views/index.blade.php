@@ -8,11 +8,19 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Addresses</h1>
+<h1>Addresses</h1>
+@foreach($users as $user)
+    <h3>{{ $user->name }} - {{ $user->email }}</h3>
     <ul>
-    @foreach($user->addresses as $address)
-        <li>{{ $address->county }}, {{ $address->city }}, {{ $address->address }}</li>
-    @endforeach
-</ul>
+        @foreach($user->addresses as $address)
+            <li>{{ $address->county }}, {{ $address->city }}, {{ $address->address }}</li>
+        @endforeach
+
+        @foreach($user->posts as $post)
+            <li>POST: {{ $post->title }}</li>
+        @endforeach
+    </ul>
+    <hr>
+@endforeach
 </body>
 </html>
