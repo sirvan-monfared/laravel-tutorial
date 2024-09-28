@@ -1,16 +1,19 @@
 <?php
 
-use App\Models\Address;
-use App\Models\Tag;
-use App\Models\User;
-use App\Models\Post;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\TrashedCustomerController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
-Route::get('/', function () {
-    $users = User::with(['addresses', 'posts'])->get();
-
-    return view('index', [
-        'users' => $users
-    ]);
+Route::get('/', function() {
+   return redirect()->route('customer.index');
 });
+
+Route::get('/customer/trashed', [TrashedCustomerController::class, 'index'])->name('customer.trashed.index');
+Route::delete('/customer/trashed/{id}', [TrashedCustomerController::class, 'destroy'])->name('customer.trashed.destroy');
+Route::patch('/customer/trashed/{id}', [TrashedCustomerController::class, 'restore'])->name('customer.trashed.restore');
+
+Route::resource('customer', CustomerController::class);
+
+
