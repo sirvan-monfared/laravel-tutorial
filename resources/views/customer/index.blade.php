@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <h3>Customers</h3>
             <div class="card">
@@ -52,7 +52,9 @@
                             <th scope="col">Email</th>
                             <th scope="col">Phone Number</th>
                             <th scope="col">Credit Card</th>
-                            <th scope="col">Action</th>
+                            @auth
+                                <th scope="col">Action</th>
+                            @endauth
                         </tr>
                         </thead>
                         <tbody>
@@ -65,22 +67,25 @@
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->card_number }}</td>
-                                <td style="display:flex; justify-content: center; align-items: center">
-                                    <a href="{{ route('customer.edit', $customer->id) }}" style="color: #2c2c2c;"
-                                       class="ms-1 me-1"><i class="far fa-edit"></i></a>
-                                    <a href="{{ route('customer.show', $customer->id) }}" style="color: #2c2c2c;"
-                                       class="ms-1 me-1"><i class="far fa-eye"></i></a>
-                                    <form method="POST" action="{{ route('customer.destroy', $customer->id) }}">
-                                        @method('DELETE')
-                                        @csrf
 
-                                        <button type="submit"
-                                                style="color: #2c2c2c; background: none; border: none; outline: none"
-                                                class="ms-1 me-1">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                @auth
+                                    <td style="display:flex; justify-content: center; align-items: center">
+                                        <a href="{{ route('customer.edit', $customer->id) }}" style="color: #2c2c2c;"
+                                           class="ms-1 me-1"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route('customer.show', $customer->id) }}" style="color: #2c2c2c;"
+                                           class="ms-1 me-1"><i class="far fa-eye"></i></a>
+                                        <form method="POST" action="{{ route('customer.destroy', $customer->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+
+                                            <button type="submit"
+                                                    style="color: #2c2c2c; background: none; border: none; outline: none"
+                                                    class="ms-1 me-1">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                @endauth
                             </tr>
                         @endforeach
 

@@ -18,7 +18,7 @@ class CustomerController extends Controller
 
     public function show($id)
     {
-        $customer= Customer::find($id);
+        $customer = Customer::find($id);
 
         return view('customer.show', [
             'customer' => $customer
@@ -41,7 +41,6 @@ class CustomerController extends Controller
 
     public function edit($id)
     {
-//        session()->flush();
         $customer = Customer::findOrFail($id);
 
         return view('customer.edit', [
