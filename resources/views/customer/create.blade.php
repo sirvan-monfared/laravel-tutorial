@@ -1,6 +1,4 @@
-@extends('layouts.master')
-
-@section('content')
+<x-layout title="Create Customer">
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <h3>Customers</h3>
@@ -32,4 +30,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-layout>

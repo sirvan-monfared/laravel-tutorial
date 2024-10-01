@@ -1,6 +1,5 @@
-@extends('layouts.master')
+<x-layout title="Edit Customer">
 
-@section('content')
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <h3>Edit Customer</h3>
@@ -19,7 +18,7 @@
                 <div class="card-body">
 
                     @session('success')
-                        <div class="alert alert-success">{{ $value }}</div>
+                    <div class="alert alert-success">{{ $value }}</div>
                     @endsession
 
 
@@ -36,4 +35,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-layout>

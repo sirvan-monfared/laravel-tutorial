@@ -1,7 +1,4 @@
-@extends('layouts.master')
-
-
-@section('content')
+<x-layout>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h3>Customers</h3>
@@ -19,7 +16,8 @@
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
                                     <input type="text" name="keyword" class="form-control"
-                                           placeholder="Search anything..." aria-describedby="button-addon2" value="{{ request()->keyword }}">
+                                           placeholder="Search anything..." aria-describedby="button-addon2"
+                                           value="{{ request()->keyword }}">
                                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search
                                     </button>
                                 </div>
@@ -27,13 +25,16 @@
                             <div class="col-md-2">
                                 <div class="input-group mb-3">
                                     <select class="form-select" name="order_by" id="order_by">
-                                        <option value="desc" @selected(request()->order_by === 'desc')>Newest to Old</option>
-                                        <option value="asc" @selected(request()->order_by === 'asc')>Old to Newest</option>
+                                        <option value="desc" @selected(request()->order_by === 'desc')>Newest to Old
+                                        </option>
+                                        <option value="asc" @selected(request()->order_by === 'asc')>Old to Newest
+                                        </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-2 text-end">
-                                <a href="{{ route('customer.trashed.index') }}" class="btn btn-secondary"><i class="fas fa-trash"></i> Trash</a>
+                                <a href="{{ route('customer.trashed.index') }}" class="btn btn-secondary"><i
+                                        class="fas fa-trash"></i> Trash</a>
                             </div>
                         </div>
 
@@ -96,15 +97,17 @@
             </div>
         </div>
     </div>
-@endsection
 
-@push('js')
-    <script>
-        const selectElm = document.getElementById('order_by');
-        const formElm = document.getElementById('filter-form');
-        selectElm.addEventListener('change', function() {
-            formElm.submit();
-        })
-    </script>
-@endpush
 
+    <x-slot:js>
+        <script>
+            const selectElm = document.getElementById('order_by');
+            const formElm = document.getElementById('filter-form');
+            selectElm.addEventListener('change', function () {
+                formElm.submit();
+            })
+        </script>
+    </x-slot:js>
+
+
+</x-layout>

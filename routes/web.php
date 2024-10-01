@@ -16,14 +16,20 @@ Route::get('/customer/trashed', [TrashedCustomerController::class, 'index'])->na
 Route::delete('/customer/trashed/{id}', [TrashedCustomerController::class, 'destroy'])->name('customer.trashed.destroy');
 Route::patch('/customer/trashed/{id}', [TrashedCustomerController::class, 'restore'])->name('customer.trashed.restore');
 
-Route::resource('customer', CustomerController::class);
+Route::resource('customer', CustomerController::class)->middleware('auth');;
 
 
-Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
-Route::post('/register', [RegisterController::class, 'store'])->name('auth.store');
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store'])->name('auth.login.store');
 
-Route::delete('/logout', [LoginController::class, 'logout'])->name('auth.logout');
+Route::get('/register', [RegisterController::class, 'create'])->name('auth.register')->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->name('auth.store')->middleware('guest');
+Route::get('/login', [LoginController::class, 'create'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'store'])->name('auth.login.store')->middleware('guest');
 
+Route::delete('/logout', [LoginController::class, 'logout'])->name('auth.logout')->middleware('auth');
 
+Route::get('/components', function() {
+    return view('test', [
+        'message' => 'this is my message',
+        'customer' => \App\Models\Customer::first()
+    ]);
+});
