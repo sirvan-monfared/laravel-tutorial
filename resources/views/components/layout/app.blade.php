@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
-    <title>Document</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>{{ $title }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
-    <link rel="stylesheet" href="css/spacing.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/spacing.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg main_menu">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="images/logo.png" alt="Freeit" class="img-fluid">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Freeit" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -56,7 +56,7 @@
                     <li>
                         <a href="#" class="wsus__manu_cart icon">
                             <span>
-                                <img src="images/cart_icon_black.svg" alt="cart" class="img-fluid">
+                                <img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid">
                                 <b>2</b>
                             </span>
                         </a>
@@ -82,9 +82,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_1.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_1.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -109,9 +109,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_2.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_2.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -136,9 +136,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_3.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_3.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -163,9 +163,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_4.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_4.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -190,9 +190,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_5.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_5.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -217,9 +217,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_6.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_6.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -244,9 +244,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_7.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_7.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -271,9 +271,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_8.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_8.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -298,9 +298,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_1.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_1.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -325,9 +325,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_2.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_2.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -352,9 +352,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_3.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_3.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -379,9 +379,9 @@
                 <div class="col-xxl-3 col-md-6 col-lg-4">
                     <div class="wsus__product_item">
                         <div class="img">
-                            <img src="images/product_4.jpg" alt="equipment" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/product_4.jpg') }}" alt="equipment" class="img-fluid w-100">
                             <a href="#" class="add_cart">
-                                <span><img src="images/cart_icon_black.svg" alt="cart" class="img-fluid w-100"></span>
+                                <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100"></span>
                                 Add To Cart
                             </a>
                             <ul>
@@ -439,7 +439,7 @@
                 <div class="col-12">
                     <div class="footer_text">
                         <a class="footer_logo" href="index.html">
-                            <img src="images/logo.png" alt="Freeit" class="img-fluid">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="Freeit" class="img-fluid">
                         </a>
                         <ul class="d-flex flex-wrap">
                             <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
@@ -458,14 +458,14 @@
 
 
     <!--jquery library js-->
-    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
     <!--bootstrap js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--font-awesome js-->
-    <script src="js/Font-Awesome.js"></script>
+    <script src="{{ asset('assets/js/Font-Awesome.js') }}"></script>
 
     <!--main/custom js-->
-    <script src="js/main.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
