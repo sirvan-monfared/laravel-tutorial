@@ -1,0 +1,243 @@
+@media (min-width: 1200px) and (max-width: 1399.99px) {
+
+    .wsus__product_item .img {
+        height: 440px;
+    }
+
+    .main_menu .navbar-nav .nav-item .nav-link {
+        margin: 0px 20px;
+    }
+
+    .wsus__product_summary {
+        margin-left: 45px;
+    }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.99px) {
+
+    .wsus__product_item .img {
+        height: 365px;
+    }
+
+    .wsus__product_summary {
+        margin-left: 25px;
+    }
+
+    .wsus__product_summary h2 {
+        line-height: initial;
+    }
+
+    .wsus__product_description_text {
+        margin-left: 50px;
+    }
+
+
+
+
+
+}
+
+@media (min-width: 768px) and (max-width: 991.99px) {
+    .wsus__product_item .img {
+        height: 415px;
+    }
+
+    .main_menu .navbar-nav .nav-item .nav-link {
+        margin: 0px 15px;
+    }
+
+    .wsus__product_details_slide_show_img {
+        height: 720px;
+    }
+
+    .wsus__product_details .nextArrow,
+    .wsus__product_details .prevArrow {
+        top: 803px;
+    }
+
+    .wsus__product_summary {
+        margin-left: 0;
+    }
+
+    .wsus__product_summary h2 {
+        margin-top: 30px;
+    }
+
+    .wsus__product_description_img {
+        height: 695px;
+        margin-bottom: 40px;
+    }
+
+    .wsus__product_description_text {
+        margin-left: 0;
+    }
+
+    .wsus__product_details_slider_img {
+        height: 115px;
+    }
+
+    .wsus__product_details .nextArrow,
+    .wsus__product_details .prevArrow {
+        height: 115px;
+        line-height: 115px !important;
+    }
+
+
+
+
+
+}
+
+@media (min-width: 576px) and (max-width: 767.99px) {
+
+    .main_menu .container {
+        padding: 8px 12px;
+    }
+
+    #navbarSupportedContent {
+        border-top: 1px solid var(--colorPrimary);
+        margin-top: 14px;
+    }
+
+    .main_menu .navbar-nav {
+        background: var(--lightBg);
+        line-height: 50px;
+        padding-top: 10px;
+    }
+
+    .main_menu .right_menu {
+        background: var(--lightBg);
+        border-bottom: 1px solid var(--colorPrimary);
+        padding-left: 25px;
+        margin-top: -1px;
+        padding-bottom: 15px;
+    }
+
+    .wsus__product_item .img {
+        height: 635px;
+    }
+
+    .wsus__product_details_slide_show_img {
+        height: 540px;
+    }
+
+    .wsus__product_details .nextArrow,
+    .wsus__product_details .prevArrow {
+        top: 606px;
+    }
+
+    .wsus__product_summary {
+        margin-left: 0;
+    }
+
+    .wsus__product_summary h2 {
+        font-size: 30px;
+        line-height: initial;
+        margin-top: 30px;
+    }
+
+    .wsus__product_description_img {
+        height: 515px;
+        margin-bottom: 40px;
+    }
+
+    .wsus__product_description_text {
+        margin-left: 0;
+    }
+
+
+
+
+
+
+
+
+}
+
+@media (max-width: 575.99px) {
+
+    .main_menu .container {
+        padding: 8px 0px;
+    }
+
+    .main_menu .navbar-brand {
+        margin-left: 12px;
+    }
+
+    #navbarSupportedContent {
+        border-top: 1px solid var(--colorPrimary);
+        margin-top: 14px;
+    }
+
+    .main_menu .navbar-nav {
+        background: var(--lightBg);
+        line-height: 50px;
+        padding-top: 10px;
+    }
+
+    .main_menu .right_menu {
+        background: var(--lightBg);
+        border-bottom: 1px solid var(--colorPrimary);
+        padding-left: 25px;
+        margin-top: -1px;
+        padding-bottom: 15px;
+    }
+
+    .wsus__product_item .img {
+        height: auto;
+    }
+
+    .wsus__pagination ul li a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .navbar-toggler {
+        margin-right: 12px;
+    }
+
+    .wsus__product_details_slide_show_img {
+        height: auto;
+    }
+
+    .wsus__product_summary {
+        margin-left: 0;
+    }
+
+    .wsus__product_details_slider {
+        margin: 0;
+    }
+
+    .wsus__product_details_slider_img {
+        height: 95px;
+    }
+
+    .wsus__product_summary h2 {
+        font-size: 30px;
+        line-height: initial;
+        margin-top: 30px;
+    }
+
+    .wsus__buy_cart_button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .wsus__product_description_img {
+        height: auto;
+        margin-bottom: 40px;
+    }
+
+    .wsus__product_description_text {
+        margin-left: 0;
+    }
+
+
+
+
+
+
+
+}
