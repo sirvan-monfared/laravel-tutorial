@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'title' => ['required'],
-            'slug' => ['required', Rule::unique('products', 'slug')],
+            'slug' => ['required', Rule::unique('products', 'slug')->ignore($this->route()->product, 'slug')],
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'price' => ['required', 'numeric'],
             'short_description' => ['nullable', 'max:2000'],

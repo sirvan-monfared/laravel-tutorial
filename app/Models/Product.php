@@ -22,11 +22,21 @@ class Product extends Model
 
     public function image(): string
     {
-        return "assets/images/product_". rand(1, 5) .".jpg";
+        return asset("assets/images/product_". rand(1, 5) .".jpg");
     }
 
     public function colors(): BelongsToMany
     {
-        return $this->belongsToMany(Color::class);
+        return $this->belongsToMany(Color::class)->withTimestamps();
+    }
+
+    public function showPrice(): string
+    {
+        return '$' . number_format($this->price);
+    }
+
+    public static function bySlug(string $slug): ?Product
+    {
+        return static::where('slug', $slug)->first();
     }
 }

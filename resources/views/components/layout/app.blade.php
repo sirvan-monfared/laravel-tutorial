@@ -25,7 +25,7 @@
 =============================-->
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ route('front.home') }}">
             <img src="{{ asset('assets/images/logo.png') }}" alt="Freeit" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -71,7 +71,7 @@
                 @endguest
                 @auth
                     <li>
-                        <a href="{{ route('dashboard') }}" class="common_btn">Login</a>
+                        <a href="{{ route('dashboard') }}" class="common_btn">Dashboard</a>
                     </li>
 
                     <li>

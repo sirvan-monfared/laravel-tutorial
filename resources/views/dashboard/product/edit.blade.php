@@ -15,12 +15,14 @@
 
             <x-flash></x-flash>
 
-            <h1 class="mb-4">Create Product</h1>
-            <form method="POST" action="{{ route('dashboard.product.store') }}">
+            <h1 class="mb-4">Edit Product</h1>
+            <form method="POST" action="{{ route('dashboard.product.update', $product->slug) }}">
                 @csrf
+                @method('PUT')
 
                 @include('dashboard.product._form', [
-                    'product' => $product
+                    'product' => $product,
+                    'buttonText' => 'Update'
                 ])
             </form>
 
