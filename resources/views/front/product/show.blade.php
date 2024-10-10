@@ -3,6 +3,8 @@
     <x-slot:css>
         <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     </x-slot:css>
 
 
@@ -27,14 +29,13 @@
                 <h6>${{ number_format($product->price) }}</h6>
                 <p>{!! $product->short_description !!}</p>
 
-                <form method="POST" action="{{ route('cart.store') }}">
+                <form method="POST" action="{{ route('cart.store') }}" id="cart-form">
                     @csrf
 
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
 
                     <h6 class="mt_30">Color</h6>
                     <select class="select_2 form-control" name="color_id">
-                        <option value="ALL">Select Color</option>
                         @foreach($product->colors as $color)
                             <option value="{{ $color->id }}">{{ $color->name }}</option>
                         @endforeach
@@ -43,14 +44,15 @@
 
                     <div class="wsus__product_add_cart">
                         <div class="wsus__product_quantity">
-                            <input type="number" class="form-control" name="qty" value="1">
-{{--                            <button class="minus" type="submit"><i class="far fa-minus"></i></button>--}}
-{{--                            <input type="text" name="qty" placeholder="01">--}}
-{{--                            <button class="plus" type="submit"><i class="far fa-plus"></i></button>--}}
+{{--                            <input type="number" class="form-control" name="qty" value="1">--}}
+                                                        <button class="minus" type="submit"><i class="far fa-minus"></i></button>
+                                                        <input type="text" name="qty" placeholder="01">
+                                                        <button class="plus" type="submit"><i class="far fa-plus"></i></button>
                         </div>
                         <div class="wsus__buy_cart_button">
                             <button type="submit" class="cart">
-                                <img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart" class="img-fluid w-100">
+                                <img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart"
+                                     class="img-fluid w-100">
                                 <span class="text-white">Buy Now</span>
                             </button>
                         </div>
@@ -84,6 +86,42 @@
     <x-slot:js>
         <script src="{{ asset('assets/js/slick.min.js') }}"></script>
         <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+        <script>
+            const formElm = document.getElementById('cart-form');
+            const cartCountElm = document.getElementById('cart-count');
+
+
+            formElm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                axios.post('{{ route('cart.store') }}', {
+                    product_id: '{{ $product->id }}',
+                    color_id: document.querySelector('select[name="color_id"]').value,
+                    qty: document.querySelector('input[name="qty"]').value,
+                }).then(({data}) => {
+                    Toastify({
+                        text: data.message,
+                        duration: 2000,
+                        style: {
+                            background: "green",
+                        },
+                    }).showToast();
+                    cartCountElm.innerHTML = data.count;
+                }).catch((result) => {
+                    Toastify({
+                        text: result.response.data.message,
+                        duration: 2000,
+                        style: {
+                            background: "red",
+                        },
+                    }).showToast();
+                })
+            })
+        </script>
     </x-slot:js>
 
 </x-layout.app>

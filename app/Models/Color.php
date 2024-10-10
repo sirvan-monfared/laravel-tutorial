@@ -14,6 +14,8 @@ class Color extends Model
 
     public $timestamps = false;
 
+    protected $guarded = [];
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class)->withTimestamps();
