@@ -15,7 +15,8 @@ Route::get('/product/{slug}', [ProductController::class, 'show'])->name('front.p
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('front.category.show');
 
 Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.remove');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
