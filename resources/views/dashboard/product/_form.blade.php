@@ -1,3 +1,7 @@
+<label for="">Image</label>
+<input type="file" name="image" class="form-control mb-3">
+
+
 <x-text-input type="text" name="title" title="Title" :value="$product->title"/>
 
 <x-text-input type="text" name="slug" title="Slug" :value="$product->slug"/>

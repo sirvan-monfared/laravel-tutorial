@@ -16,7 +16,7 @@
             <x-flash></x-flash>
 
             <h1 class="mb-4">Create Product</h1>
-            <form method="POST" action="{{ route('dashboard.product.store') }}">
+            <form method="POST" action="{{ route('dashboard.product.store') }}" enctype="multipart/form-data">
                 @csrf
 
                 @include('dashboard.product._form', [

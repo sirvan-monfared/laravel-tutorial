@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('front.home');
 
+Route::get('/test', function() {
+    \Illuminate\Support\Facades\Storage::put('file.txt', 'Hello From Sirvan');
+});
+
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('front.product.show');
 
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('front.category.show');

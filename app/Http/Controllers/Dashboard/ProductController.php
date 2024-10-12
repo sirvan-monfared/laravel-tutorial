@@ -7,6 +7,8 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -25,8 +27,18 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
+
+        $x = $request->file('image')->storeAs('/', "asfsafsa.". $request->file('image')->extension(), 'local');
+
+//        $file = $request->file('image');
+//
+//        $name = 'sirvan.' . $file->extension();
+//
+//        $x = Storage::putFileAs('/', $file, $name);
+//        dd($x);
+
         $product = Product::create([
             'title' => $request->title,
             'slug' => $request->slug,
