@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Actions\ProductCreate;
+use App\Actions\ProductUpdate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
@@ -27,32 +29,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-
-        $x = $request->file('image')->storeAs('/', "asfsafsa.". $request->file('image')->extension(), 'local');
-
-//        $file = $request->file('image');
-//
-//        $name = 'sirvan.' . $file->extension();
-//
-//        $x = Storage::putFileAs('/', $file, $name);
-//        dd($x);
-
-        $product = Product::create([
-            'title' => $request->title,
-            'slug' => $request->slug,
-            'category_id' => $request->category_id,
-            'price' => $request->price,
-            'short_description' => $request->short_description,
-            'qty' => $request->qty,
-            'sku' => $request->sku,
-            'description' => $request->description,
-        ]);
-
-        if ($request->colors) {
-            $product->colors()->sync($request->colors);
-        }
+        ProductCreate::handle($request);
 
         return back()->with('success', 'Product Created Successfully');
     }
@@ -61,9 +40,9 @@ class ProductController extends Controller
     {
         $product = Product::bySlug($slug);
 
-        abort_if(! $product, 404);
+        abort_if(!$product, 404);
 
-        return  view('dashboard.product.edit', [
+        return view('dashboard.product.edit', [
             'product' => $product
         ]);
     }
@@ -72,18 +51,16 @@ class ProductController extends Controller
     {
         $product = Product::bySlug($slug);
 
-        abort_if(! $product, 404);
+        abort_if(!$product, 404);
 
-        $product->update($request->validated());
-
-        $product->colors()->sync($request->colors);
+        ProductUpdate::handle($product, $request);
 
         return back()->with('success', 'Update Was Successful');
     }
 
     public function destroy($slug)
     {
-        $product =  Product::bySlug($slug);
+        $product = Product::bySlug($slug);
 
         $product->delete();
 

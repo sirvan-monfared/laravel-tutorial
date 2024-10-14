@@ -16,7 +16,7 @@
             <x-flash></x-flash>
 
             <h1 class="mb-4">Edit Product</h1>
-            <form method="POST" action="{{ route('dashboard.product.update', $product->slug) }}">
+            <form method="POST" action="{{ route('dashboard.product.update', $product->slug) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 

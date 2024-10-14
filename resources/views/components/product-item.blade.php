@@ -3,7 +3,7 @@
 <div class="col-xxl-3 col-md-6 col-lg-4">
     <div class="wsus__product_item">
         <div class="img">
-            <img src="{{ asset($product->image()) }}" alt="equipment" class="img-fluid w-100">
+            <img src="{{ $product->featuredImage()  }}" alt="equipment" class="img-fluid w-100">
             <a href="#" class="add_cart">
                                 <span><img src="{{ asset('assets/images/cart_icon_black.svg') }}" alt="cart"
                                            class="img-fluid w-100"></span>

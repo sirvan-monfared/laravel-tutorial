@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
 class ProductRequest extends FormRequest
 {
@@ -31,7 +32,8 @@ class ProductRequest extends FormRequest
             'short_description' => ['nullable', 'max:2000'],
             'qty' => ['required', 'numeric'],
             'sku' => ['nullable'],
-            'description' => ['nullable', 'max:2000']
+            'description' => ['nullable', 'max:2000'],
+            'image.*' => File::image()
         ];
     }
 }
