@@ -2,9 +2,11 @@
     <div class="row">
         <div class="col-12">
             <h2>Products</h2>
-            <div class="text-end mb-4">
-                <a href="{{ route('dashboard.product.create') }}" class="btn btn-primary">Create Product</a>
-            </div>
+            @can('create', \App\Models\Product::class)
+                <div class="text-end mb-4">
+                    <a href="{{ route('dashboard.product.create') }}" class="btn btn-primary">Create Product</a>
+                </div>
+            @endcan
         </div>
 
         <x-flash></x-flash>
@@ -28,14 +30,18 @@
                         <td>{{ $product->showPrice() }}</td>
                         <td>
                             <div class="d-flex gap-3 align-items-center">
-                                <a href="{{ route('dashboard.product.edit', $product->slug) }}">Edit</a>
+                                @can('update', $product)
+                                    <a href="{{ route('dashboard.product.edit', $product->slug) }}">Edit</a>
+                                @endcan
+                                @can('delete', $product)
+                                    <form action="{{ route('dashboard.product.destroy', $product->slug) }}"
+                                          method="POST">
+                                        @csrf
+                                        @method('DELETE')
 
-                                <form action="{{ route('dashboard.product.destroy', $product->slug) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn">Delete</button>
-                                </form>
+                                        <button type="submit" class="btn">Delete</button>
+                                    </form>
+                                @endcan
                             </div>
                         </td>
                     </tr>

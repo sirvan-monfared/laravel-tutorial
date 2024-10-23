@@ -32,6 +32,11 @@ class Product extends Model
         return $this->hasOne(Image::class)->orderBy('id', 'DESC');
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
@@ -80,4 +85,6 @@ class Product extends Model
             'description' => $data['description']
         ]);
     }
+
+
 }

@@ -9,21 +9,32 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
     public function index()
     {
+        Gate::authorize('viewAny', Product::class);
+
+        $products = Product::when(
+            ! auth()->user()->isAdmin(),
+            fn (Builder $query) => $query->where('user_id', auth()->user()->id)
+        )->get();
+
+
         return view('dashboard.product.index', [
-            'products' => Product::all()
+            'products' => $products
         ]);
     }
 
 
     public function create()
     {
+        Gate::authorize('create', Product::class);
         return view('dashboard.product.create', [
             'product' => new Product
         ]);
@@ -41,6 +52,16 @@ class ProductController extends Controller
         $product = Product::bySlug($slug);
 
         abort_if(!$product, 404);
+
+        Gate::authorize('update', $product);
+
+//        if (Gate::denies('product-update', $product)) {
+//            abort(403);
+//        }
+
+//        if(auth()->user()->cannot('update', $product)) {
+//            abort(403);
+//        }
 
         return view('dashboard.product.edit', [
             'product' => $product
