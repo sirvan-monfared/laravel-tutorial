@@ -46,10 +46,8 @@ class ColorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id)
+    public function edit(Color $color)
     {
-        $color = Color::findOrFail($id);
-
         return view('dashboard.color.edit', [
             'color' => $color
         ]);
@@ -58,10 +56,8 @@ class ColorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Color $color)
     {
-        $color = Color::findOrFail($id);
-
         $validated = $request->validate([
             'name' => ['required', 'min:3'],
         ]);
@@ -74,10 +70,8 @@ class ColorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Color $color)
     {
-        $color = Color::findOrFail($id);
-
         $color->delete();
 
         return back()->with('success', 'Color Deleted Successfully');

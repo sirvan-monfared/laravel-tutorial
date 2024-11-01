@@ -9,6 +9,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\Scopes\NewestScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -23,7 +24,7 @@ class ProductController extends Controller
         $products = Product::when(
             ! auth()->user()->isAdmin(),
             fn (Builder $query) => $query->where('user_id', auth()->user()->id)
-        )->get();
+        )->withoutGlobalScopes()->get();
 
 
         return view('dashboard.product.index', [
@@ -47,21 +48,9 @@ class ProductController extends Controller
         return back()->with('success', 'Product Created Successfully');
     }
 
-    public function edit($slug)
+    public function edit(Product $product)
     {
-        $product = Product::bySlug($slug);
-
-        abort_if(!$product, 404);
-
         Gate::authorize('update', $product);
-
-//        if (Gate::denies('product-update', $product)) {
-//            abort(403);
-//        }
-
-//        if(auth()->user()->cannot('update', $product)) {
-//            abort(403);
-//        }
 
         return view('dashboard.product.edit', [
             'product' => $product

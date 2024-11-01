@@ -35,18 +35,15 @@ class CategoryController extends Controller
         return back()->with('success', 'Category Created Successfully');
     }
 
-    public function edit(int $id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
-
         return view('dashboard.category.edit', [
             'category' => $category
         ]);
     }
 
-    public function update(int $id, Request $request)
+    public function update(Category $category, Request $request)
     {
-        $category = Category::findOrFail($id);
 
         $validated = $request->validate([
             'title' => ['required'],
@@ -58,10 +55,8 @@ class CategoryController extends Controller
         return back()->with('success', 'Category Updated Successfully');
     }
 
-    public function destroy(int $id)
+    public function destroy(Category $category)
     {
-        $category = Category::findOrFail($id);
-
         $category->delete();
 
         return back()->with('success', 'Category Deleted Successfully');

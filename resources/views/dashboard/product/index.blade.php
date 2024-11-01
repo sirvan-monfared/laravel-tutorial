@@ -18,6 +18,7 @@
                 <th>image</th>
                 <th>title</th>
                 <th>Price</th>
+                <th>Status</th>
                 <th>Actions</th>
                 </thead>
                 <tbody>
@@ -28,13 +29,14 @@
                                  style="width: 80px !important; height: 80px !important;" alt=""></td>
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->showPrice() }}</td>
+                        <td>{!! $product->status->name() !!}</td>
                         <td>
                             <div class="d-flex gap-3 align-items-center">
                                 @can('update', $product)
-                                    <a href="{{ route('dashboard.product.edit', $product->slug) }}">Edit</a>
+                                    <a href="{{ route('dashboard.product.edit', $product) }}">Edit</a>
                                 @endcan
                                 @can('delete', $product)
-                                    <form action="{{ route('dashboard.product.destroy', $product->slug) }}"
+                                    <form action="{{ route('dashboard.product.destroy', $product) }}"
                                           method="POST">
                                         @csrf
                                         @method('DELETE')

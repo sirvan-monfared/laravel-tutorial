@@ -13,7 +13,7 @@ class CheckAdmin
      *
      * @param Closure(Request): (Response) $next
      */
-    public function handle(Request $request, Closure $next, $param, $name): Response
+    public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check() && auth()->user()->isAdmin()) {
             return $next($request);

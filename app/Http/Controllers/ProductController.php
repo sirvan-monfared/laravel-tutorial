@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function show($slug)
+    public function show(Product $product)
     {
-        $product = Product::where('slug' , $slug)->first();
-
         return view('front.product.show', [
             'product' => $product
         ]);
