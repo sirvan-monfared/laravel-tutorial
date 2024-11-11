@@ -1,9 +1,3 @@
-@props(['disabled' => false, 'title'])
+@props(['disabled' => false])
 
-<div class="form-group mb-4">
-    <label for="{{ $attributes->get('id') }}">{{ $title }}</label>
-    <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'form-control']) !!} value="{{ old($attributes->get('name'), $value ?? null) }}">
-    @error($attributes->get('name'))
-        <small class="form-text text-danger">{{ $message }}</small>
-    @enderror
-</div>
+<input @disabled($disabled) {{ $attributes->merge(['class' => 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm']) }}>

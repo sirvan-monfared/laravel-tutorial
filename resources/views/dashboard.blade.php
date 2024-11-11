@@ -1,38 +1,17 @@
-<x-layout.app>
-    <div class="row">
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-        <div class="col-4 text-center">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-cart-plus"></i>
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('dashboard.product.index') }}">Products</a>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }}
                 </div>
             </div>
         </div>
-        <div class="col-4 text-center">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-sitemap"></i>
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('dashboard.category.index') }}">Categories</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4 text-center">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-paint-brush"></i>
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('dashboard.color.index') }}">Colors</a>
-                </div>
-            </div>
-        </div>
-
     </div>
-
-
-</x-layout.app>
+</x-app-layout>
