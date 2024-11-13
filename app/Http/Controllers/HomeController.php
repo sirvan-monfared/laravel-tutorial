@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +12,8 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('front/home');
+        return view('front.home.index', [
+            'categories' => Category::with('children')->root()->get()
+        ]);
     }
 }

@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Location;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\CategoryFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        Category::factory(10)->has(Category::factory(rand(3, 5)), 'children')->create([
+            'parent_id' => null
+        ]);
+        Location::factory(5)->has(Location::factory(rand(3, 8)), 'children')->create([
+            'parent_id' => null
+        ]);
 
         User::factory()->create([
             'name' => 'Test User',
