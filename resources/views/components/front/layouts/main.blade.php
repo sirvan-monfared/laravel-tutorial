@@ -69,8 +69,8 @@
                         </a>
 
                         <ul :class="{ 'hidden': ! openMenu }"
-                            class="hidden bg-white rounded-md shadow-sm py-4 px-6 absolute w-48 left-0 top-9 border border-gray-50 text-gray-600 space-y-3 text-sm">
-                            <li><a class="hover:text-orange-500" href="./login.html">ورود | ثبت نام</a></li>
+                            class="hidden bg-white rounded-md shadow-sm py-4 px-6 absolute w-48 left-0 top-9 border border-gray-50 text-gray-600 space-y-3 text-sm z-50">
+                            <li><a class="hover:text-orange-500" href="{{ route('register') }}">ورود | ثبت نام</a></li>
                             <li><a class="hover:text-orange-500" href="#">پسندیده ها</a></li>
                             <li><a class="hover:text-orange-500" href="#">آگهی های من</a></li>
                             <li><a class="hover:text-orange-500" href="#">خریدهای من</a></li>
@@ -79,7 +79,12 @@
                             <li><a class="hover:text-orange-500" href="#">جستجوهای من</a></li>
                             <li><a class="hover:text-orange-500" href="#">پرداخت های من</a></li>
                             <li><a class="hover:text-orange-500" href="chat.html">چت های من</a></li>
-                            <li><a class="hover:text-orange-500" href="#">خروج</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="hover:text-orange-500">خروج</button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -91,7 +96,7 @@
             <a href="{{ route('front.home') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="logo">
             </a>
-            <a href="./submit.html"
+            <a href="{{ route('front.ad.create') }}"
                class="bg-blue-500 rounded-full px-4 py-2 text-sm text-white flex items-center hover:shadow-md cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                     <path fill-rule="evenodd"
@@ -103,6 +108,8 @@
         </div>
     </div>
 </header>
+
+<x-flash/>
 
 {{ $slot }}
 

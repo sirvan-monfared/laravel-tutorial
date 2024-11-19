@@ -18,13 +18,15 @@ class LocationFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \GlassCode\PersianFaker\PersianFaker::create();
+
         return [
             'parent_id' => fake()->randomElements([
                 null,
                 Location::factory()
             ]),
-            'title' => fake()->words(2, true),
-            'slug' => Str::slug(fake()->words(2, true))
+            'title' => $faker->location()->state(),
+            'slug' => Str::slug(fake()->words(3, true))
         ];
     }
 }

@@ -18,12 +18,13 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \GlassCode\PersianFaker\PersianFaker::create();
         return [
             'parent_id' => fake()->randomElements([
                 null,
                 Category::factory()
             ]),
-            'title' => fake()->words(1, true),
+            'title' => $faker->text()->word(),
             'slug' => Str::slug(fake()->unique()->words(3, true)),
             'icon' => null
         ];
