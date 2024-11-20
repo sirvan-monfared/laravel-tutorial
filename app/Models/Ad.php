@@ -2,13 +2,24 @@
 
 namespace App\Models;
 
+use App\Enums\AdStatus;
+use App\Models\Scopes\AdActiveScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+#[ScopedBy(AdActiveScope::class)]
 class Ad extends Model
 {
     use HasFactory;
+
+    protected function casts(): array
+    {
+        return [
+            'status' => AdStatus::class
+        ];
+    }
 
     protected $fillable = ['title', 'slug', 'category_id', 'user_id', 'location_id', 'price', 'description', 'featured_image'];
 

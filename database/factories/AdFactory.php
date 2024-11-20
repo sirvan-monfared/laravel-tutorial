@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\AdStatus;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\User;
@@ -30,7 +31,8 @@ class AdFactory extends Factory
             'slug' => Str::slug($title),
             'description' => $faker->text()->paragraph() . '<br>' . $faker->text()->paragraph(),
             'price' => fake()->randomElement([null, rand(1000, 999999)]),
-            'featured_image' => null
+            'featured_image' => null,
+            'status' => fake()->randomElements(AdStatus::cases())
         ];
     }
 }

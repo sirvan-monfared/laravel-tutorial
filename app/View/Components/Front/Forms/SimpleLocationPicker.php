@@ -14,7 +14,7 @@ class SimpleLocationPicker extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public string $name, public ?int $value)
     {
         $this->locations = Location::with('children')->root()->get();
     }
