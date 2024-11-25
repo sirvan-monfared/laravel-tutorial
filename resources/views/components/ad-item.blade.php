@@ -12,7 +12,13 @@
                 <p class="text-base pt-3 lg:text-sm text-gray-400">{{ $ad->price ? number_format($ad->price) . 'تومان ' : 'توافقی' }}</p>
                 <p class="text-base pt-3 lg:text-sm text-gray-400">{{ $ad->category->parent->title }}
                     ، {{ $ad->category->title }} </p>
-                <p class="text-xs text-gray-400 mt-1">{{ $ad->location->parent->title }}، {{ $ad->location->title }}</p>
+
+                <div class="flex item-center justify-between">
+                    <p class="text-xs text-gray-400 mt-1">{{ $ad->location->parent->title }}، {{ $ad->location->title }}</p>
+                    @if($showStatus)
+                        <span class="{{ $ad->status->cssClass() }} text-white py-1 px-2 rounded-sm text-xs">{{ $ad->status->name() }}</span>
+                    @endif
+                </div>
             </div>
         </div>
     </a>

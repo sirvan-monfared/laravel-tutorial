@@ -10,7 +10,7 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Ad::with(['category.parent', 'location.parent']);
+        $query = Ad::eagerList();
 
         if(trim($request->keyword)) {
             $query->where(function(Builder $query) use ($request) {

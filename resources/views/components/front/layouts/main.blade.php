@@ -70,9 +70,12 @@
 
                         <ul :class="{ 'hidden': ! openMenu }"
                             class="hidden bg-white rounded-md shadow-sm py-4 px-6 absolute w-48 left-0 top-9 border border-gray-50 text-gray-600 space-y-3 text-sm z-50">
-                            <li><a class="hover:text-orange-500" href="{{ route('register') }}">ورود | ثبت نام</a></li>
+                            @auth
+                                <li><a class="hover:text-orange-500" href="{{ route('dashboard.ad.index') }}">آگهی های من</a></li>
+                            @else
+                                <li><a class="hover:text-orange-500" href="{{ route('register') }}">ورود | ثبت نام</a></li>
+                            @endif
                             <li><a class="hover:text-orange-500" href="#">پسندیده ها</a></li>
-                            <li><a class="hover:text-orange-500" href="#">آگهی های من</a></li>
                             <li><a class="hover:text-orange-500" href="#">خریدهای من</a></li>
                             <li><a class="hover:text-orange-500" href="#">مدیریت سفارش ها</a></li>
                             <li><a class="hover:text-orange-500" href="#">پروفایل من</a></li>

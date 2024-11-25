@@ -16,7 +16,8 @@ class AdService
     {
         try {
             $data['slug'] = Str::slug($data['title']);
-            $ad = Ad::create($data);
+
+            $ad = auth()->user()->ads()->create($data);
 
             $ad->status = AdStatus::PENDING;
             $ad->save();

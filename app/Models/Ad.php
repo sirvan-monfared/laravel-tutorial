@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\AdStatus;
 use App\Models\Scopes\AdActiveScope;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,6 +23,11 @@ class Ad extends Model
     }
 
     protected $fillable = ['title', 'slug', 'category_id', 'user_id', 'location_id', 'price', 'description', 'featured_image'];
+
+    public function scopeEagerList(Builder $query): Builder
+    {
+        return $query->with(['category.parent', 'location.parent']);
+    }
 
     public function owner(): BelongsTo
     {

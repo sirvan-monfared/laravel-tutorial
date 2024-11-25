@@ -35,8 +35,18 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
+    public function ads(): HasMany
+    {
+        return $this->hasMany(Ad::class);
+    }
+
     public function tree(): string
     {
         return $this->parent->title. "، " .$this->title;
+    }
+
+    public function viewLink()
+    {
+        return route('front.category.show', $this);
     }
 }

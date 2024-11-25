@@ -12,7 +12,7 @@ class AdItem extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public Ad $ad)
+    public function __construct(public Ad $ad, public bool $showStatus = false)
     {
         //
     }

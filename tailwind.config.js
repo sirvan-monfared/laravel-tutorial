@@ -9,6 +9,8 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    safelist: ['bg-teal-500', 'bg-amber-500', 'bg-rose-500'],
+
     theme: {
         extend: {
             fontFamily: {
