@@ -10,16 +10,29 @@
             </div>
             <div>
                 <p class="text-base pt-3 lg:text-sm text-gray-400">{{ $ad->price ? number_format($ad->price) . 'تومان ' : 'توافقی' }}</p>
-                <p class="text-base pt-3 lg:text-sm text-gray-400">{{ $ad->category->parent->title }}
+                <p class="text-base pt-3 lg:text-xs text-gray-400">{{ $ad->category->parent->title }}
                     ، {{ $ad->category->title }} </p>
 
                 <div class="flex item-center justify-between">
                     <p class="text-xs text-gray-400 mt-1">{{ $ad->location->parent->title }}، {{ $ad->location->title }}</p>
                     @if($showStatus)
-                        <span class="{{ $ad->status->cssClass() }} text-white py-1 px-2 rounded-sm text-xs">{{ $ad->status->name() }}</span>
+                        <span class="{{ $ad->status->cssClass() }} text-white py-1 px-2 rounded-lg text-xs">{{ $ad->status->name() }}</span>
                     @endif
                 </div>
             </div>
         </div>
     </a>
+
+    @if($showStatus)
+        <div class="h-1 border-b border-dotted border-gray-300"></div>
+        <div class="p-1 flex gap-2 items-center">
+            <a href="{{ route('dashboard.ad.edit', $ad) }}" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-orange-400 hover:text-white">ویرایش</a>
+
+            <form action="{{ route('dashboard.ad.destroy', $ad) }}" method="POST" class="delete-form">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-red-400 hover:text-white delete-button">حذف</button>
+            </form>
+        </div>
+    @endif
 </article>

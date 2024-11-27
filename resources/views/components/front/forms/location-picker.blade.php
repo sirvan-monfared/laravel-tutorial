@@ -5,7 +5,7 @@
 
         @foreach($state->children as $city)
             <option
-                value="{{ $city->id }}" @selected($city->id === (int) old('location_id'))>{{ $city->title }}</option>
+                value="{{ $city->id }}" @selected($city->id === (int) old('location_id', $value))>{{ $city->title }}</option>
         @endforeach
     @endforeach
 </x-front.forms.select-modern>

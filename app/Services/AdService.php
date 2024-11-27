@@ -9,6 +9,12 @@ use Illuminate\Support\Str;
 
 class AdService
 {
+    public static function findOrFail($ad_id): Ad
+    {
+        return Ad::withoutGlobalScopes()->findOrFail($ad_id);
+    }
+
+
     /**
      * @throws CreateAdException
      */
@@ -24,6 +30,20 @@ class AdService
         } catch (\Exception) {
             throw new CreateAdException();
         }
+    }
 
+    /**
+     * @throws CreateAdException
+     */
+    public static function update(Ad $ad, array $data)
+    {
+        try {
+            $ad->update($data);
+
+            $ad->status = AdStatus::PENDING;
+            $ad->save();
+        } catch (\Exception) {
+            throw new CreateAdException();
+        }
     }
 }

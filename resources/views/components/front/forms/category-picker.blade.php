@@ -5,7 +5,7 @@
 
         @foreach($category->children as $subcategory)
             <option
-                value="{{ $subcategory->id }}" @selected($subcategory->id === (int) old('category_id'))>{{ $subcategory->title }}</option>
+                value="{{ $subcategory->id }}" @selected($subcategory->id === (int) old('category_id', $value))>{{ $subcategory->title }}</option>
         @endforeach
     @endforeach
 </x-front.forms.select-modern>

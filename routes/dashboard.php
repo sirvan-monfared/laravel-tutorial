@@ -4,11 +4,11 @@ use App\Http\Controllers\Dashboard\AdController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('dashboard')->middleware('auth')->group(function() {
+Route::get('/dashboard', function() {
+    return redirect()->route('dashboard.ad.index');
+})->name('dashboard');
 
-    Route::get('/', function() {
-        return redirect()->route('dashboard.ad.index');
-    })->name('dashboard');
+Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(function() {
 
-    Route::get('/ad', [AdController::class, 'index'])->name('dashboard.ad.index');
+    Route::resource('ad', AdController::class)->only(['index', 'edit', 'update', 'destroy']);
 });

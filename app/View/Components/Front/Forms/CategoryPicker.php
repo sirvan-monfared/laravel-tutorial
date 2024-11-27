@@ -14,7 +14,7 @@ class CategoryPicker extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public ?int $value = null)
     {
         $this->categories = Category::with('children')->root()->get();
     }

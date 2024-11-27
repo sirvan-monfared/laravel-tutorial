@@ -21,8 +21,7 @@ class AdController extends Controller
     public function create()
     {
         return view('front.ad.create', [
-            'categories' => Category::with('children')->root()->get(),
-            'locations' => Location::with('children')->root()->get(),
+            'ad' => new Ad
         ]);
     }
 
