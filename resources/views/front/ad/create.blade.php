@@ -20,10 +20,15 @@
                 </section>
 
                 <section class="order-1 flex-1">
-                    @include('front.ad._images_uploader')
+                    <div class="bg-white shadow-md rounded-md p-3 mt-3">
+                        <input type="file" name="images[]" class="filepond">
+                    </div>
+{{--                    @include('front.ad._images_uploader')--}}
                 </section>
             </div>
         </form>
 
     </main>
+    {{ csrf_token() }}
+
 </x-front.layouts.main>

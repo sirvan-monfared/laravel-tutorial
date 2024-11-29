@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sheypoor</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{ $css ?? null }}
 </head>
 
 <body dir="rtl" class="{{ $bodyClass ?? 'bg-neutral-100' }}" x-data="{ openMenu: false }">
@@ -301,6 +303,8 @@
             </nav>
         </div>
     </div>
+
+    {{ $js ?? null }}
 
 </footer>
 
