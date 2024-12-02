@@ -1,7 +1,7 @@
 <article class="col-span-4 lg:col-span-1 bg-white shadow-sm rounded-md">
     <a href="{{ $ad->viewLink() }}" class="flex lg:flex-col gap-4 lg:gap-2 p-2">
         <div class="w-1/2 lg:w-full bg-gray-100">
-            <img src="{{ $ad->featuredImage() }}" class="rounded-md h-32 aspect-square md:h-40 lg:h-48 mx-auto"
+            <img src="{{ $ad->featuredImageUrl() }}" class="rounded-md h-32 aspect-square md:h-40 lg:h-48 mx-auto"
                  alt="">
         </div>
         <div class="flex flex-col justify-between w-full lg:h-40">

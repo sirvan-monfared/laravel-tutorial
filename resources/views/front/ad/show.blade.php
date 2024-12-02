@@ -137,4 +137,8 @@
 
         </div>
     </section>
+
+    <x-slot:js>
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    </x-slot:js>
 </x-front.layouts.main>

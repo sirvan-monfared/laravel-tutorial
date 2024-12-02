@@ -31,8 +31,7 @@ class AdFactory extends Factory
             'slug' => Str::slug($title),
             'description' => $faker->text()->paragraph() . '<br>' . $faker->text()->paragraph(),
             'price' => fake()->randomElement([null, rand(1000, 999999)]),
-            'featured_image' => null,
-            'status' => fake()->randomElements(AdStatus::cases())
+            'status' => fake()->randomElement(AdStatus::cases())
         ];
     }
 }

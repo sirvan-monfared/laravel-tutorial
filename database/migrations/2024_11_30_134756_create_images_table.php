@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\AdStatus;
+use App\Models\Ad;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,8 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->smallInteger('status')->after('price')->default(AdStatus::PENDING);
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Ad::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('url');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('images');
     }
 };

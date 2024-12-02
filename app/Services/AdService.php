@@ -18,7 +18,7 @@ class AdService
     /**
      * @throws CreateAdException
      */
-    public static function create(array $data)
+    public static function create(array $data): Ad
     {
         try {
             $data['slug'] = Str::slug($data['title']);
@@ -27,6 +27,8 @@ class AdService
 
             $ad->status = AdStatus::PENDING;
             $ad->save();
+
+            return $ad;
         } catch (\Exception) {
             throw new CreateAdException();
         }

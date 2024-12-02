@@ -32,7 +32,11 @@ const pond = FilePond.create(filepond, {
     server: {
         process: "/upload",
         headers: {
-            'X-CSRF-TOKEN': csrf
+            'X-CSRF-TOKEN': csrf,
+            'accept': 'application/json'
         }
+    },
+    onerror: (error) => {
+        alert("لطفا یک تصویر از نوع jpg یا png ارسال کنید");
     }
 });

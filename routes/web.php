@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -8,9 +9,7 @@ require __DIR__.'/front.php';
 require __DIR__.'/dashboard.php';
 
 
-Route::post('/upload', function(Request $request) {
-    dd($request->allFiles());
-});
+Route::post('/upload', [ImageUploadController::class, 'upload'])->name('image.upload');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
