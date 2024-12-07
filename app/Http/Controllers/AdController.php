@@ -34,19 +34,7 @@ class AdController extends Controller
         try {
             $ad = AdService::create($request->validated());
 
-            foreach ($request->images as $image) {
-                $imageName = json_decode($image)->name;
-
-                $directory = date('Y') . '/' . date('m');
-
-                Storage::disk('upload')->putFileAs($directory, Storage::path($imageName), $imageName);
-                Storage::delete($imageName);
-
-                $url = "$directory/$imageName";
-                $ad->images()->create([
-                    'url' => $url
-                ]);
-            }
+            $this->handleUploadImages($request->images, $ad);
 
             session()->flash('success', 'ثبت آگهی با موفقیت انجام شد');
         } catch (CreateAdException) {
@@ -54,5 +42,27 @@ class AdController extends Controller
         }
 
         return back();
+    }
+
+    /**
+     * @param SubmitAdRequest $request
+     * @param Ad $ad
+     * @return void
+     */
+    private function handleUploadImages(array $images, Ad $ad): void
+    {
+        $directory = date('Y') . '/' . date('m');
+        foreach ($images as $image) {
+            $imageName = json_decode($image)->name;
+
+
+            Storage::disk('upload')->putFileAs($directory, Storage::path($imageName), $imageName);
+            Storage::delete($imageName);
+
+            $url = "$directory/$imageName";
+            $ad->images()->create([
+                'url' => $url
+            ]);
+        }
     }
 }

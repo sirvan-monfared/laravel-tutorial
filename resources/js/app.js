@@ -4,6 +4,9 @@ import Alpine from 'alpinejs';
 
 import * as FilePond from 'filepond';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+FilePond.registerPlugin(FilePondPluginImagePreview);
+
+window.FilePond = FilePond;
 
 window.Alpine = Alpine;
 
@@ -21,22 +24,3 @@ submitButtons.forEach((button) => {
         }
     })
 })
-
-const filepond = document.querySelector('.filepond');
-const csrf = document.querySelector('input[name="_token"]').value;
-
-FilePond.registerPlugin(FilePondPluginImagePreview);
-const pond = FilePond.create(filepond, {
-    allowMultiple: true,
-    name: 'filepond',
-    server: {
-        process: "/upload",
-        headers: {
-            'X-CSRF-TOKEN': csrf,
-            'accept': 'application/json'
-        }
-    },
-    onerror: (error) => {
-        alert("لطفا یک تصویر از نوع jpg یا png ارسال کنید");
-    }
-});

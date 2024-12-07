@@ -10,6 +10,7 @@ use App\Services\AdService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
 {
@@ -39,6 +40,9 @@ class AdController extends Controller
             Gate::authorize('update', $ad);
 
             AdService::update($ad, $request->all());
+
+            $this->handleUploadImages($ad, $request->images);
+
             session()->flash('success', 'عملیات با موفقیت انجام شد');
 
         } catch (CreateAdException) {
@@ -62,5 +66,38 @@ class AdController extends Controller
         }
 
         return back();
+    }
+
+    /**
+     * @param Ad $ad
+     * @param SubmitAdRequest $request
+     * @return void
+     */
+    private function handleUploadImages(Ad $ad, array $images): void
+    {
+        $ad->images()->delete();
+        $directory = date('Y') . '/' . date('m');
+
+        foreach ($images as $image) {
+
+            if (!$image) continue;
+
+            $imageName = json_decode($image)?->name;
+
+            if (!$imageName) {
+                $ad->images()->create([
+                    'url' => $directory . '/' . basename($image)
+                ]);
+                continue;
+            }
+
+            Storage::disk('upload')->putFileAs($directory, Storage::path($imageName), $imageName);
+            Storage::delete($imageName);
+
+            $url = "$directory/$imageName";
+            $ad->images()->create([
+                'url' => $url
+            ]);
+        }
     }
 }

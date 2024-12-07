@@ -5,9 +5,7 @@
         <input type="file" name="images[]" class="filepond">
     </div>
 
-
-    <img class="hidden lg:block lg:translate-y-3" src="{{ asset('images/3pF2kF-P.png') }}"
-         alt="camera">
+    <img class="hidden lg:block lg:translate-y-3" src="{{ asset('images/3pF2kF-P.png') }}" alt="camera">
 </div>
 <div class="hidden lg:block mt-3">
     @if(request()->routeIs('front.ad.create'))
