@@ -25,14 +25,18 @@
 
     @if($showStatus)
         <div class="h-1 border-b border-dotted border-gray-300"></div>
-        <div class="p-1 flex gap-2 items-center">
-            <a href="{{ route('dashboard.ad.edit', $ad) }}" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-orange-400 hover:text-white">ویرایش</a>
+        <div class="p-1 flex gap-2 items-center justify-between">
+            <div class="flex gap-1">
+                <a href="{{ route('dashboard.ad.edit', $ad) }}" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-orange-400 hover:text-white">ویرایش</a>
 
-            <form action="{{ route('dashboard.ad.destroy', $ad) }}" method="POST" class="delete-form">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-red-400 hover:text-white delete-button">حذف</button>
-            </form>
+                <form action="{{ route('dashboard.ad.destroy', $ad) }}" method="POST" class="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-red-400 hover:text-white delete-button">حذف</button>
+                </form>
+            </div>
+
+            <a href="{{ route('dashboard.invoice.show', $ad) }}" class="border border-gray-200 rounded-lg text-xs py-1 px-2 hover:bg-orange-400 hover:text-white">ارتقا به آگهی فوری</a>
         </div>
     @endif
 </article>

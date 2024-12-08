@@ -8,7 +8,8 @@
         "php": "^8.2",
         "glasscode/persian-faker": "^1.0",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "shetabit/payment": "^5.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
