@@ -16,4 +16,5 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
 
     Route::get('/invoice/{ad}', [InvoiceController::class, 'show'])->name('invoice.show');
     Route::post('/invoice/{ad}', [PaymentController::class, 'start'])->name('payment.start');
+    Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
 });
