@@ -64,7 +64,7 @@
 
                         <div>
                             <span class="block text-xs uppercase text-gray-500">تاریخ پرداخت</span>
-                            <span class="block text-sm font-medium text-gray-800">{{ $order->created_at->format('Y/m/d') }}</span>
+                            <span class="block text-sm font-medium text-gray-800">{{ $order->created_at->toJalali()->format('Y/m/d') }}</span>
                         </div>
                         <!-- End Col -->
 

@@ -57,40 +57,28 @@
                         </a>
                     </li>
                     <li class="py-2 relative">
-                        <a href="#" class="flex items-center gap-2 hover:text-orange-500"
-                           @click.prevent="openMenu = ! openMenu" @click.away="openMenu = false">
-                            <span>پشتیبانی</span>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                 class="w-6 h-6">
-                                <path fill-rule="evenodd"
-                                      d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                                      clip-rule="evenodd"/>
-                            </svg>
+                        <a href="{{ route('login') }}" class="flex items-center gap-2 hover:text-orange-500"
+                           @auth @click.prevent="openMenu = ! openMenu" @click.away="openMenu = false" @endauth>
+                            <span>حساب کاربری</span>
 
+                            <x-front.icons.user/>
                         </a>
 
-                        <ul :class="{ 'hidden': ! openMenu }"
-                            class="hidden bg-white rounded-md shadow-sm py-4 px-6 absolute w-48 left-0 top-9 border border-gray-50 text-gray-600 space-y-3 text-sm z-50">
-                            @auth
+                        @auth
+                            <ul :class="{ 'hidden': ! openMenu }" class="hidden bg-white rounded-md shadow-sm py-4 px-6 absolute w-48 left-0 top-9 border border-gray-50 text-gray-600 space-y-3 text-sm z-50">
                                 <li><a class="hover:text-orange-500" href="{{ route('dashboard.ad.index') }}">آگهی های من</a></li>
-                            @else
-                                <li><a class="hover:text-orange-500" href="{{ route('register') }}">ورود | ثبت نام</a></li>
-                            @endif
-                            <li><a class="hover:text-orange-500" href="#">پسندیده ها</a></li>
-                            <li><a class="hover:text-orange-500" href="#">خریدهای من</a></li>
-                            <li><a class="hover:text-orange-500" href="#">مدیریت سفارش ها</a></li>
-                            <li><a class="hover:text-orange-500" href="#">پروفایل من</a></li>
-                            <li><a class="hover:text-orange-500" href="#">جستجوهای من</a></li>
-                            <li><a class="hover:text-orange-500" href="#">پرداخت های من</a></li>
-                            <li><a class="hover:text-orange-500" href="chat.html">چت های من</a></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="hover:text-orange-500">خروج</button>
-                                </form>
-                            </li>
-                        </ul>
+                                <li><a class="hover:text-orange-500" href="{{ route('dashboard.order.index') }}">پرداخت های من</a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="hover:text-orange-500">خروج</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        @endauth
+
+
                     </li>
                 </ul>
             </div>

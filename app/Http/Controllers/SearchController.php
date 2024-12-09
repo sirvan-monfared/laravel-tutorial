@@ -28,7 +28,7 @@ class SearchController extends Controller
         }
 
         return view('front.search.index', [
-            'ads' => $query->paginate(20)
+            'ads' => $query->orderByDesc('special')->paginate(20)
         ]);
     }
 }

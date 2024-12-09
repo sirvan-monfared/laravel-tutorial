@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ad::class)->withoutGlobalScope(AdActiveScope::class);
     }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

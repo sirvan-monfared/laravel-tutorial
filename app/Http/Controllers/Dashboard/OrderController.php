@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        return view('dashboard.order.index', [
+            'orders' => auth()->user()->orders
+        ]);
+    }
     public function show(Order $order)
     {
         Gate::authorize('view', $order);
