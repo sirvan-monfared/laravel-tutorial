@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/front.php';
 require __DIR__.'/dashboard.php';
 
-
 Route::post('/upload', [ImageUploadController::class, 'upload'])->name('image.upload');
 
 Route::middleware('auth')->group(function () {
@@ -19,3 +18,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
+

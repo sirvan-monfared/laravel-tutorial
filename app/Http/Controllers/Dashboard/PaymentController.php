@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\Order;
 use App\Services\AdService;
+use Exception;
 use Illuminate\Http\Request;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Invoice;
@@ -26,6 +27,7 @@ class PaymentController extends Controller
         return Payment::callbackUrl(route('dashboard.payment.callback'))->purchase($invoice, function($driver, $transactionId) use ($ad, $amount, $invoice) {
             $order = Order::create([
                 'ad_id' => $ad->id,
+                'user_id' => auth()->id(),
                 'amount'  => $amount,
                 'transaction_id' => $transactionId,
                 'info' => serialize($invoice),
@@ -52,14 +54,12 @@ class PaymentController extends Controller
             $order->status = OrderStatus::PAID;
             $order->save();
 
-            dd('success');
-        } catch(InvalidPaymentException $e) {
+        } catch(InvalidPaymentException|Exception $e) {
             $order->status = OrderStatus::CANCELED;
             $order->errors = $e->getMessage();
             $order->save();
-            dd('error captured');
-        } catch (\Exception $e) {
-            dd($e);
         }
+
+        return redirect()->route('dashboard.order.show', $order);
     }
 }
