@@ -1,0 +1,18 @@
+@import url("./fonts.css");
+@import 'filepond/dist/filepond.min.css';
+@import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+  select {
+    background-position: left theme("spacing.2") center;
+    padding-left: theme("spacing.10");
+    padding-right: theme("spacing.3");
+  }
+}
