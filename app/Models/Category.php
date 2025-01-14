@@ -15,6 +15,8 @@ class Category extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['title', 'slug', 'parent_id', 'icon'];
+
     public function scopeRoot(Builder $query): Builder
     {
         return $query->whereNull('parent_id');

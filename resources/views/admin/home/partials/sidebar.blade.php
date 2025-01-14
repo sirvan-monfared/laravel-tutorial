@@ -214,10 +214,10 @@
                 />
               </svg>
 
-              Forms
+              دسته بندی ها
 
               <svg
-                class="absolute right-4 top-1/2 -translate-y-1/2 fill-current"
+                class="absolute left-4 top-1/2 -translate-y-1/2 fill-current"
                 :class="{ 'rotate-180': (selected === 'Forms') }"
                 width="20"
                 height="20"
@@ -243,17 +243,17 @@
                 <li>
                   <a
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                    href="form-elements.html"
+                    href="{{ route('admin.category.index') }}"
                     :class="page === 'formElements' && '!text-white'"
-                    >Form Elements</a
+                    >مدیریت دسته ها</a
                   >
                 </li>
                 <li>
                   <a
                     class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white"
-                    href="form-layout.html"
+                    href="{{ route('admin.category.create') }}"
                     :class="page === 'formLayout' && '!text-white'"
-                    >Form Layout</a
+                    >ساخت دسته جدید</a
                   >
                 </li>
               </ul>
