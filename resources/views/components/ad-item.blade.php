@@ -22,8 +22,7 @@
                     <p class="text-xs text-gray-400 mt-1">{{ $ad->location->parent->title }}
                         ، {{ $ad->location->title }}</p>
                     @if($showStatus)
-                        <span
-                            class="{{ $ad->status->cssClass() }} text-white py-1 px-2 rounded-lg text-xs">{{ $ad->status->name() }}</span>
+                        <x-ad-status :status="$ad->status"></x-ad-status>
                     @endif
                 </div>
             </div>

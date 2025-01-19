@@ -83,4 +83,14 @@ class Ad extends Model
     {
         return $this->images->count() > 0 ? $this->images : collect([new Image(['url' => 'default.jpg'])]);
     }
+
+    public function editLink(): string
+    {
+        return route('admin.ad.edit', $this);
+    }
+
+    public function deleteLink(): string
+    {
+        return route('admin.ad.destroy', $this);
+    }
 }

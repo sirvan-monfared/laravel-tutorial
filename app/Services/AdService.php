@@ -48,4 +48,9 @@ class AdService
             throw new CreateAdException();
         }
     }
+
+    public static function delete(Ad $ad): void
+    {
+        $ad->forceDelete();
+    }
 }

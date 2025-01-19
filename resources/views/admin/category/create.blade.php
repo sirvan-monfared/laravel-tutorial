@@ -18,9 +18,8 @@
         </nav>
     </div>
 
-    <form action="{{ route('admin.category.store', $category) }}" method="POST">
-        @csrf
-
+    <x-admin.form.form  action="{{ route('admin.category.store') }}" title="ساخت دسته">
         @include('admin.category._form')
-    </form>
+    </x-admin.form.form>
+
 </x-admin.layouts.main>

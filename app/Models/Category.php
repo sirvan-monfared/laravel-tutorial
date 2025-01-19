@@ -47,8 +47,19 @@ class Category extends Model
         return $this->parent->title. "، " .$this->title;
     }
 
-    public function viewLink()
+    public function viewLink(): string
     {
         return route('front.category.show', $this);
+    }
+
+
+    public function editLink(): string
+    {
+        return route('admin.category.edit', $this);
+    }
+
+    public function deleteLink(): string
+    {
+        return route('admin.category.destroy', $this);
     }
 }
