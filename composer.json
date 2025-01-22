@@ -6,10 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "blade-ui-kit/blade-icons": "^1.7",
         "glasscode/persian-faker": "^1.0",
         "hekmatinasser/verta": "^8.4",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "postare/blade-mdi": "^1.1",
         "shetabit/payment": "^5.8"
     },
     "require-dev": {

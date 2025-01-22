@@ -4,11 +4,7 @@
         <x-admin.breadcrumb-item link="{{ route('admin.category.index') }}">دسته ها</x-admin.breadcrumb-item>
     </x-admin.breadcrumbs-list>
 
-
-    <form action="{{ route('admin.category.update', $category) }}" method="POST">
-        @csrf
-        @method('PUT')
-
+    <x-admin.form.form action="{{ route('admin.category.update', $category) }}" title="ویرایش دسته" method="PUT">
         @include('admin.category._form')
-    </form>
+    </x-admin.form.form>
 </x-admin.layouts.main>

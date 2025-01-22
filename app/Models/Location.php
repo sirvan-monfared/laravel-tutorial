@@ -14,6 +14,8 @@ class Location extends Model
     /** @use HasFactory<LocationFactory> */
     use HasFactory;
 
+    protected $fillable = ['title', 'slug', 'parent_id'];
+
     public $timestamps = false;
 
     public function scopeRoot(Builder $query): Builder
@@ -39,5 +41,22 @@ class Location extends Model
     public function tree(): string
     {
         return $this->parent->title . "، " .$this->title;
+    }
+
+    public function viewLink(): string
+    {
+        return '';
+//        return route('front.location.show', $this);
+    }
+
+
+    public function editLink(): string
+    {
+        return route('admin.location.edit', $this);
+    }
+
+    public function deleteLink(): string
+    {
+        return route('admin.location.destroy', $this);
     }
 }
