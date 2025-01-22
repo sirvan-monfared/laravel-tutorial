@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\AdStatus;
 use App\Exceptions\CreateAdException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubmitAdRequest;
 use App\Models\Ad;
+use App\Models\Scopes\AdActiveScope;
 use App\Services\AdService;
+use App\Services\UploadService;
 use Illuminate\Http\Request;
 
 class AdController extends Controller
@@ -14,7 +17,7 @@ class AdController extends Controller
     public function index()
     {
         return view('admin.ad.index', [
-            'ads' => Ad::eagerList()->paginate()
+            'ads' => AdService::all()
         ]);
     }
 
@@ -28,7 +31,10 @@ class AdController extends Controller
     public function store(SubmitAdRequest $request)
     {
         try {
-            $ad = AdService::create($request->validated());
+            $status = $request->enum('status', AdStatus::class);
+            $ad = AdService::create($request->validated(), $status);
+
+            UploadService::forCreate($request->images, $ad);
 
             return redirect()->to($ad->editLink())->with(['success' => 'ثبت آگهی با موفقیت انجام شد']);
         }catch(CreateAdException $e) {
@@ -50,7 +56,10 @@ class AdController extends Controller
     {
         $ad = AdService::findOrFail($id);
 
-        AdService::update($ad, $request->validated());
+        $status = $request->enum('status', AdStatus::class);
+        AdService::update($ad, $request->validated(), $status);
+
+        UploadService::forUpdate($request->images, $ad);
 
         return back()->with(['success' => 'ویرایش با موفقیت انجام شد']);
     }

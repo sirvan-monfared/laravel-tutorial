@@ -8,6 +8,7 @@ use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Location;
 use App\Services\AdService;
+use App\Services\UploadService;
 use Illuminate\Support\Facades\Storage;
 
 class AdController extends Controller
@@ -34,7 +35,7 @@ class AdController extends Controller
         try {
             $ad = AdService::create($request->validated());
 
-            $this->handleUploadImages($request->images, $ad);
+            UploadService::forCreate($request->images, $ad);
 
             session()->flash('success', 'ثبت آگهی با موفقیت انجام شد');
         } catch (CreateAdException) {
@@ -44,25 +45,6 @@ class AdController extends Controller
         return back();
     }
 
-    /**
-     * @param SubmitAdRequest $request
-     * @param Ad $ad
-     * @return void
-     */
-    private function handleUploadImages(array $images, Ad $ad): void
-    {
-        $directory = date('Y') . '/' . date('m');
-        foreach ($images as $image) {
-            $imageName = json_decode($image)->name;
 
 
-            Storage::disk('upload')->putFileAs($directory, Storage::path($imageName), $imageName);
-            Storage::delete($imageName);
-
-            $url = "$directory/$imageName";
-            $ad->images()->create([
-                'url' => $url
-            ]);
-        }
-    }
 }

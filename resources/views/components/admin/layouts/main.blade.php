@@ -46,6 +46,6 @@
     </div>
     <!-- ===== Content Area End ===== -->
 </div>
-<!-- ===== Page Wrapper End ===== -->
+    {{ $js ?? null }}
 </body>
 </html>
