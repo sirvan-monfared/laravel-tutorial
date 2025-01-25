@@ -64,4 +64,33 @@ class User extends Authenticatable
     {
         return !! $this->is_admin;
     }
+
+    public function viewLink(): string
+    {
+        return route('admin.user.show', $this);
+    }
+
+    public function editLink(): string
+    {
+        return route('admin.user.edit', $this);
+    }
+
+    public function deleteLink(): string
+    {
+        return route('admin.user.destroy', $this);
+    }
+
+    public function updateInfo(string $name, string $email)
+    {
+        $this->update([
+            'name' => $name,
+            'email' => $email
+        ]);
+    }
+
+    public function updatePassword(string $password): void
+    {
+        $this->password = $password;
+        $this->save();
+    }
 }

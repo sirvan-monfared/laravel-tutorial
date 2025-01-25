@@ -73,6 +73,18 @@
                 <x-admin.menu.submenu-item title="ساخت لوکیشن جدید" href="{{ route('admin.location.create') }}"></x-admin.menu.submenu-item>
             </x-admin.menu.menu-item>
 
+            <x-admin.menu.menu-item name="user" title="مدیریت کاربرها">
+                <x-slot:icon>
+                    <x-mdi-account-group-outline />
+                </x-slot:icon>
+                <x-admin.menu.submenu-item title="مدیریت کاربرها" href="{{ route('admin.user.index') }}"></x-admin.menu.submenu-item>
+                <x-admin.menu.submenu-item title="ساخت کاربر جدید" href="{{ route('admin.user.create') }}"></x-admin.menu.submenu-item>
+            </x-admin.menu.menu-item>
+
+            <x-admin.menu.menu-item name="order" title="مدیریت پرداخت ها" href="{{ route('admin.order.index') }}">
+                <x-slot:icon><x-mdi-cart-variant /></x-slot:icon>
+            </x-admin.menu.menu-item>
+
             <x-admin.menu.menu-item name="website" title="مشاهده سایت" href="{{ route('front.home') }}" target="_blank">
                 <x-slot:icon><x-mdi-earth /></x-slot:icon>
             </x-admin.menu.menu-item>

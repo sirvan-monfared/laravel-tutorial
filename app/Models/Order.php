@@ -34,4 +34,14 @@ class Order extends Model
     {
         return $this->status === OrderStatus::PAID;
     }
+
+    public function viewLink(): string
+    {
+        return route('admin.order.show', $this);
+    }
+
+    public function deleteLink(): string
+    {
+        return route('admin.order.destroy', $this);
+    }
 }
