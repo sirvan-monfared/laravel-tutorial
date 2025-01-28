@@ -1,5 +1,5 @@
-<x-front.forms.select-modern name="category_id" title="گروه">
-    <option value="" selected disabled>انتخاب کنید</option>
+<x-front.forms.select-modern name="{{ $name }}" title="گروه">
+    <option value="" selected @disabled($disabledDefault)>انتخاب کنید</option>
     @foreach($categories as $category)
         <optgroup label="{{ $category->title }}"></optgroup>
 

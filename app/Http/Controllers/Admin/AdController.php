@@ -11,13 +11,15 @@ use App\Models\Scopes\AdActiveScope;
 use App\Services\AdService;
 use App\Services\UploadService;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AdController extends Controller
 {
     public function index()
     {
         return view('admin.ad.index', [
-            'ads' => AdService::all()
+            'ads' => AdService::filter()
         ]);
     }
 
