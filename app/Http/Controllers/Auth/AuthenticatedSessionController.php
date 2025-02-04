@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\OtpStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Otp;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,13 +25,23 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        $user = User::where('phone', $request->phone)->first();
 
-        $request->session()->regenerate();
+        // send otp code
+//        $code = OtpService::sendFor($request->phone);
+        $otpCode = rand(1000, 9999);
+        Otp::create([
+            'code' => $otpCode,
+            'phone' => $request->phone,
+            'status' => OtpStatus::PENDING
+        ]);
 
-        return redirect()->intended(route('front.ad.create', absolute: false));
+        session()->put('temp_phone', $request->phone);
+
+        return redirect()->route('otp.edit');
+        // send Sms
     }
 
     /**

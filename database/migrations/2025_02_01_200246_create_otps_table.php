@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->boolean('is_admin')->default(false)->after('phone_verified_at');
+        Schema::create('otps', function (Blueprint $table) {
+            $table->id();
+            $table->string('code');
+            $table->string('phone');
+            $table->smallInteger('status')->default(\App\Enums\OtpStatus::PENDING);
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_admin');
-        });
+        Schema::dropIfExists('otps');
     }
 };
