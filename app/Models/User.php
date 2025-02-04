@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public static function findByPhone(string $phone)
+    {
+        return User::where('phone', $phone)->first();
+    }
+
     public function isAdmin(): bool
     {
         return !! $this->is_admin;

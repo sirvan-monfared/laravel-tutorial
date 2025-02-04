@@ -15,4 +15,10 @@ class Otp extends Model
             'status' => OtpStatus::class
         ];
     }
+
+    public function setAsVerified(): void
+    {
+        $this->status = OtpStatus::VERIFIED;
+        $this->save();
+    }
 }

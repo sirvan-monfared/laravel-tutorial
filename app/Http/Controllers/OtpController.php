@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OtpStatus;
+use App\Exceptions\CanNotResendOtpException;
+use App\Exceptions\InvalidOtpCodeException;
 use App\Http\Requests\OtpRequest;
 use App\Models\Otp;
 use App\Models\User;
+use App\Services\OtpService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -16,51 +20,35 @@ class OtpController extends Controller
         return view('auth.verify-otp');
     }
 
-    public function verify(OtpRequest $request)
+    public function verify(OtpRequest $request, OtpService $otpService)
     {
-        $record = Otp::where('code', $request->otp)->where('status', OtpStatus::PENDING)->where('created_at', '>=', now()->subMinutes(2))->latest()->first();
+        try {
+            $phone = $otpService->verify($request->otp);
 
-        if (! $record || $record->phone !== session('temp_phone')) {
+            $user = UserService::findOrCreateByPhone($phone);
+
+            auth()->login($user, remember: true);
+
+            return redirect()->route('dashboard.ad.index');
+
+        }catch(InvalidOtpCodeException $e) {
             throw ValidationException::withMessages([
-                'otp' => 'کد وارد شده معتبر نیست و یا منقضی شده است'
+                'otp' => $e->getMessage()
             ]);
         }
-
-        $record->status = OtpStatus::VERIFIED;
-        $record->save();
-
-        $user = User::where('phone', $record->phone)->first();
-
-        if (! $user) {
-            // register
-            $user = User::create([
-                'phone' => $record->phone,
-            ]);
-            $user->phone_verified_at = now();
-            $user->save();
-        }
-
-        auth()->login($user, remember: true);
-        return redirect()->route('dashboard.ad.index');
     }
 
-    public function resend()
+    public function resend(OtpService $otpService)
     {
-        $phone = session('temp_phone');
-        $record = Otp::where('phone', $phone)->where('status', OtpStatus::PENDING)->where('created_at', '>=', now()->subMinutes(2))->latest()->first();
+        try {
+            $phone = $otpService->fetchPhoneFromSession();
 
-        if ($record) {
-            $time = intval(abs($record->created_at->diffInSeconds(now()->subMinutes(2))));
-            return back()->with('fail', "برای ارسال مجدد کد تایید باید {$time} ثانیه صبر کنید");
+             $otpService->resend($phone);
+
+            return back()->with('success', "کد تایید به شماره {$phone} ارسال شد");
+
+        } catch (CanNotResendOtpException $e) {
+            return back()->with(['fail' => $e->getMessage()]);
         }
-
-        $otpCode = rand(1000, 9999);
-        Otp::create([
-            'code' => $otpCode,
-            'phone' => $phone,
-            'status' => OtpStatus::PENDING
-        ]);
-
-        return back()->with('success', "کد تایید به شماره {$phone} ارسال شد");
     }
 }
