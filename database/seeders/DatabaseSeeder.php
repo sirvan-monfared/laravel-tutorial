@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Greet;
-use App\Models\Post;
+use App\Models\Ad;
+use App\Models\Category;
+use App\Models\Location;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\CategoryFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,15 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'phone' => '09123456789',
         ]);
 
-        Greet::factory(5)->create();
-
-        Post::factory(50)->create();
+        $this->call([
+            CategorySeeder::class,
+            LocationSeeder::class,
+            AdSeeder::class
+        ]);
     }
 }
