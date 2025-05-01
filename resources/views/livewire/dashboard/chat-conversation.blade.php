@@ -1,0 +1,277 @@
+<div>
+    <div class="hidden lg:block h-full" x-show="! open">
+        <div class="flex items-center justify-center bg-white rounded-md shadow-md h-full">
+            <div class="flex flex-col items-center gap-6">
+                <img src="images/chat.png" alt="" class="w-24">
+                <p class="text-gray-600">برای شروع یکی از چت ها را از لیست انتخاب کنید</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed w-screen h-screen inset-0 lg:static lg:w-auto lg:h-auto bg-white z-50"
+         :class="{ 'hidden': ! open }">
+
+        <!-- modal header -->
+        <div class="bg-white p-2 shadow-sm border border-gray-200 flex items-center justify-between">
+
+            <div class="flex items-center gap-2 truncate">
+                <a href="#" @click.prevent="open = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                    </svg>
+                </a>
+
+                <div class="flex gap-2 truncate">
+                    <div class="h-12 w-12 lg:hidden">
+                        <img class="rounded-full w-full"
+                             src="https://www.sheypoor.com/imgs/2023/03/03/422655895/133x133_af/422655895_4183d347d81b729d6d6a0b2869a3c227.jpg"
+                             alt="">
+                    </div>
+                    <div class="flex flex-col justify-between truncate">
+                        <h2 class="text-sm font-bold text-black truncate">303 متر مسکونی شهرکی سنددار
+                        </h2>
+                        <p class="text-xs text-gray-500">
+                            محمد
+                        </p>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z"/>
+            </svg>
+
+        </div>
+
+
+        <!-- review -->
+        <div
+            class="my-3 mx-5 bg-white shadow-md rounded-md flex flex-col lg:flex-row lg:justify-between gap-2">
+
+            <div
+                class="flex items-center gap-2 justify-center py-2 px-4 text-gray-500 border-b border-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+                </svg>
+                <p>به این فروشنده امتیاز دهید</p>
+            </div>
+
+            <div class="flex items-center justify-between py-3 px-5 lg:gap-8">
+
+                <a href="#" class="text-blue-500 font-medium">امتیاز دهی به فروشنده</a>
+                <a href="#" class="text-gray-400">انصراف</a>
+
+            </div>
+
+        </div>
+
+        <!-- chat list -->
+        <div class="mt-7 px-5 h-[500px] overflow-auto">
+            <ul class="flex flex-col gap-2">
+
+                <li class="flex items-center justify-center">
+                                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
+                                        اسفند</span>
+                </li>
+
+                <li
+                    class="flex items-start gap-3 rounded-xl bg-cyan-600 text-white text-[10px] py-1 px-2">
+                    <time>08:48</time>
+                    <span>کاربر گرامی
+                                        کد تایید یا ورود به برنامه ها و اطلاعات شخصی خود را برای هیچکس ارسال نکنید، پیام
+                                        های شیپور
+                                        در چت فقط از طریق حساب &lt;&lt;پشتیبانی شیپور&gt;&gt; به شما ارسال می گردد. در
+                                        صورت مشاهده
+                                        هرگونه تخلف، آن را گزارش کنید.
+                                    </span>
+                </li>
+
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>سلام</span>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>قیمت چند</span>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>آدرس دقیق کجاست؟</span>
+                </li>
+
+                <li
+                    class="self-end flex items-center gap-3 rounded-full rounded-tl-none bg-white text-gray-700 py-2 px-4 shadow-md">
+
+                    <span>سلام خرم آباد متری 7 </span>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                </li>
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>سلام</span>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>قیمت چند</span>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>آدرس دقیق کجاست؟</span>
+                </li>
+
+                <li
+                    class="self-end flex items-center gap-3 rounded-full rounded-tl-none bg-white text-gray-700 py-2 px-4 shadow-md">
+
+                    <span>سلام خرم آباد متری 7 </span>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                </li>
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>سلام</span>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>قیمت چند</span>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>آدرس دقیق کجاست؟</span>
+                </li>
+
+                <li
+                    class="self-end flex items-center gap-3 rounded-full rounded-tl-none bg-white text-gray-700 py-2 px-4 shadow-md">
+
+                    <span>سلام خرم آباد متری 7 </span>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                </li>
+
+                <li
+                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         class="w-4 h-4 fill-white">
+                        <path
+                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                        </path>
+                    </svg>
+                    <time class="text-[10px] text-neutral-300">08:48</time>
+                    <span>سیروان منفرد کجاست </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mt-5 px-5">
+            <ul class="flex items-center gap-2">
+                <li>
+                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
+                        اسفند</span>
+                </li>
+                <li>
+                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
+                        اسفند</span>
+                </li>
+                <li>
+                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
+                        اسفند</span>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="mt-5 px-5">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"/>
+                    </svg>
+
+                </div>
+
+                <input type="text"
+                       class="flex-1 h-10 border-gray-300 px-5 focus:border-blue-400 rounded-md placeholder-gray-400"
+                       placeholder="پیامتان را درج کنید...">
+            </div>
+        </div>
+
+    </div>
+
+</div>
