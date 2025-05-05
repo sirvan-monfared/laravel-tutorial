@@ -3,19 +3,19 @@
     <!-- item -->
     @foreach($chats as $chat)
         <div class="w-full bg-white rounded-md shadow-sm p-2">
-            <a class="flex gap-2" href="#">
+            <a class="flex gap-2" href="#" wire:click.prevent="chatClicked('{{ $chat->id }}')">
                 <div class="w-20 h-20">
                     <img class="aspect-square w-full"
-                         src="{{ $chat->ad->featuredImageUrl() }}"
+                         src="{{ $chat->ad?->featuredImageUrl() }}"
                          alt="">
                 </div>
                 <div class="flex-1 px-3 flex flex-col justify-between">
                     <div>
-                        <h2 class="text-black font-medium">{{ $chat->ad->title }}</h2>
-                        <p class="text-sm text-gray-500 ">این آخرین پیام شما در این چت است</p>
+                        <h2 class="text-black font-medium">{{ $chat->ad?->title }}</h2>
+                        <p class="text-sm text-gray-500 ">{{ $chat->lastMessage?->message }}</p>
                     </div>
                     <div class="flex items-center justify-between">
-                        <p class="text-sm text-gray-500">محمد</p>
+                        <p class="text-sm text-gray-500">{{ $chat->otherUser()->name }}</p>
                         <p class="text-sm text-gray-500">8:42</p>
                     </div>
                 </div>

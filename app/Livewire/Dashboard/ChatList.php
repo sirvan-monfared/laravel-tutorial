@@ -16,6 +16,11 @@ class ChatList extends Component
         $this->chats = ChatService::forUser(auth()->user());
     }
 
+    public function chatClicked(string $id)
+    {
+        $this->dispatch('chat-clicked', id: $id);
+    }
+
     public function render()
     {
         return view('livewire.dashboard.chat-list');

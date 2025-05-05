@@ -6,6 +6,7 @@ use http\Message;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Chat extends Model
 {
@@ -31,6 +32,16 @@ class Chat extends Model
 
     public function messages(): HasMany
     {
-        return$this->hasMany(ChatMessage::class, 'chat_id', 'id');
+        return $this->hasMany(ChatMessage::class);
+    }
+
+    public function lastMessage(): HasOne
+    {
+        return $this->hasOne(ChatMessage::class)->latest('id');
+    }
+
+    public function otherUser(): User
+    {
+        return auth()->id() === $this->host_id ? $this->guest : $this->host;
     }
 }

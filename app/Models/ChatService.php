@@ -23,6 +23,7 @@ class ChatService
 
     public static function forUser(User $user)
     {
-        return Chat::where('host_id', $user->id)->orWhere('guest_id', $user->id)->get();
+        return Chat::with('lastMessage')->where('host_id', $user->id)->orWhere('guest_id', $user->id)->get();
     }
+
 }

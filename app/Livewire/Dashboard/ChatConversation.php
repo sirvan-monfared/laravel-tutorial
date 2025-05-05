@@ -4,16 +4,24 @@ namespace App\Livewire\Dashboard;
 
 use App\Models\Chat;
 use App\Models\ChatService;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ChatConversation extends Component
 {
-    public Chat $chat;
-    public function mount()
+    public ?Chat $chat = null;
+
+    #[On('chat-clicked')]
+    public function onChatSelected($id)
     {
-        $this->chat = ChatService::find('9efc6b82-05ca-46ee-b44a-cb246f4e8b68');
+        if (! $id) return null;
 
+        $this->chat = ChatService::find($id);
+    }
 
+    public function back()
+    {
+        $this->chat = null;
     }
 
 
