@@ -30,7 +30,7 @@
                              alt="">
                     </div>
                     <div class="flex flex-col justify-between truncate">
-                        <h2 class="text-sm font-bold text-black truncate">303 متر مسکونی شهرکی سنددار
+                        <h2 class="text-sm font-bold text-black truncate">{{ $chat->ad->title }}
                         </h2>
                         <p class="text-xs text-gray-500">
                             محمد
@@ -50,29 +50,6 @@
         </div>
 
 
-        <!-- review -->
-        <div
-            class="my-3 mx-5 bg-white shadow-md rounded-md flex flex-col lg:flex-row lg:justify-between gap-2">
-
-            <div
-                class="flex items-center gap-2 justify-center py-2 px-4 text-gray-500 border-b border-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
-                </svg>
-                <p>به این فروشنده امتیاز دهید</p>
-            </div>
-
-            <div class="flex items-center justify-between py-3 px-5 lg:gap-8">
-
-                <a href="#" class="text-blue-500 font-medium">امتیاز دهی به فروشنده</a>
-                <a href="#" class="text-gray-400">انصراف</a>
-
-            </div>
-
-        </div>
-
         <!-- chat list -->
         <div class="mt-7 px-5 h-[500px] overflow-auto">
             <ul class="flex flex-col gap-2">
@@ -81,6 +58,7 @@
                                     <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
                                         اسفند</span>
                 </li>
+
 
                 <li
                     class="flex items-start gap-3 rounded-xl bg-cyan-600 text-white text-[10px] py-1 px-2">
@@ -94,145 +72,27 @@
                                     </span>
                 </li>
 
+                @foreach($chat->messages as $message)
+                    <li @class(['flex items-center gap-3 rounded-full rounded-tr-none py-2 px-4',
+                        'self-start bg-neutral-500 text-white' => $message->sender_id === auth()->id(),
+                        'self-end bg-white text-gray-700  shadow-md' => $message->sender_id !== auth()->id()
+])
+                    >
+                        @if($message->is_read)
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                 class="w-4 h-4 fill-white">
+                                <path
+                                    d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
+                                </path>
+                            </svg>
+                        @endif
+                        <time
+                            class="text-[10px] text-neutral-300">{{ $message->created_at->toJalali()->format('H:i') }}</time>
+                        <span>{{ $message->message }}</span>
+                    </li>
+                @endforeach
 
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>سلام</span>
-                </li>
 
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>قیمت چند</span>
-                </li>
-
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>آدرس دقیق کجاست؟</span>
-                </li>
-
-                <li
-                    class="self-end flex items-center gap-3 rounded-full rounded-tl-none bg-white text-gray-700 py-2 px-4 shadow-md">
-
-                    <span>سلام خرم آباد متری 7 </span>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                </li>
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>سلام</span>
-                </li>
-
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>قیمت چند</span>
-                </li>
-
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>آدرس دقیق کجاست؟</span>
-                </li>
-
-                <li
-                    class="self-end flex items-center gap-3 rounded-full rounded-tl-none bg-white text-gray-700 py-2 px-4 shadow-md">
-
-                    <span>سلام خرم آباد متری 7 </span>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                </li>
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>سلام</span>
-                </li>
-
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>قیمت چند</span>
-                </li>
-
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>آدرس دقیق کجاست؟</span>
-                </li>
-
-                <li
-                    class="self-end flex items-center gap-3 rounded-full rounded-tl-none bg-white text-gray-700 py-2 px-4 shadow-md">
-
-                    <span>سلام خرم آباد متری 7 </span>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                </li>
-
-                <li
-                    class="self-start flex items-center gap-3 rounded-full rounded-tr-none bg-neutral-500 text-white py-2 px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                         class="w-4 h-4 fill-white">
-                        <path
-                            d="M18.12 6.528l-1.44-1.44-6.48 6.504 1.44 1.44 6.48-6.504zm4.344-1.44L11.64 16.008l-4.32-4.32-1.44 1.44 5.76 5.784L24 6.528l-1.536-1.44zM0 13.128l5.76 5.784 1.44-1.464-5.76-5.76L0 13.128z">
-                        </path>
-                    </svg>
-                    <time class="text-[10px] text-neutral-300">08:48</time>
-                    <span>سیروان منفرد کجاست </span>
-                </li>
             </ul>
         </div>
 

@@ -6,6 +6,11 @@ use Str;
 
 class ChatService
 {
+    public static function find(string $id)
+    {
+        return Chat::findOrFail($id);
+    }
+
     public static function create(Ad $ad, User $host, User $guest): ?Chat
     {
         return Chat::create([

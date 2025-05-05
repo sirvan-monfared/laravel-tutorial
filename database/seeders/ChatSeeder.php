@@ -15,16 +15,43 @@ class ChatSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = \GlassCode\PersianFaker\PersianFaker::create();
+
         $ad = Ad::find(36);
-        ChatService::create($ad, $ad->owner, User::find(4));
+        $chat = ChatService::create($ad, $ad->owner, User::find(4));
+        for($i = 1; $i <= 10; $i++) {
+           $chat->messages()->create([
+                'sender_id' => fake()->randomElement([1, 5]),
+                'message' => $faker->sentence
+            ]);
+        }
 
         $ad = Ad::find(39);
-        ChatService::create($ad, $ad->owner, User::find(5));
+        $chat = ChatService::create($ad, $ad->owner, User::find(5));
+        for($i = 1; $i <= 10; $i++) {
+           $chat->messages()->create([
+                'sender_id' => fake()->randomElement([1, 5]),
+                'message' => $faker->sentence
+            ]);
+        }
 
         $ad = Ad::find(4);
-        ChatService::create($ad, $ad->owner, User::find(1));
+        $chat = ChatService::create($ad, $ad->owner, User::find(1));
+
+        for($i = 1; $i <= 10; $i++) {
+           $chat->messages()->create([
+                'sender_id' => fake()->randomElement([1, 5]),
+                'message' => $faker->sentence
+            ]);
+        }
 
         $ad = Ad::find(5);
-        ChatService::create($ad, $ad->owner, User::find(1));
+        $chat = ChatService::create($ad, $ad->owner, User::find(1));
+        for($i = 1; $i <= 10; $i++) {
+           $chat->messages()->create([
+                'sender_id' => fake()->randomElement([1, 5]),
+                'message' => $faker->sentence
+            ]);
+        }
     }
 }
