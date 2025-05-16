@@ -46,7 +46,7 @@
                 </ul>
                 <ul class="flex items-center gap-5">
                     <li class="py-2">
-                        <a href="#" class="flex items-center gap-2 hover:text-orange-500">
+                        <a href="{{ route('dashboard.chat.index') }}" class="flex items-center gap-2 hover:text-orange-500">
                             <span>چت های من</span>
 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"

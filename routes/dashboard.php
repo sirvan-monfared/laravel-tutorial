@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AdController;
+use App\Http\Controllers\Dashboard\ChatController;
 use App\Http\Controllers\Dashboard\InvoiceController;
 use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\PaymentController;
@@ -15,11 +16,14 @@ Route::prefix('dashboard')->name('dashboard.')->middleware('auth')->group(functi
 
     Route::resource('ad', AdController::class)->only(['index', 'edit', 'update', 'destroy']);
 
+
     Route::get('/invoice/{ad}', [InvoiceController::class, 'show'])->name('invoice.show');
     Route::post('/invoice/{ad}', [PaymentController::class, 'start'])->name('payment.start');
     Route::get('/payment/callback', [PaymentController::class, 'callback'])->name('payment.callback');
 
     Route::resource('order', OrderController::class)->only(['index', 'show']);
 
-    Route::get('/chat', [\App\Http\Controllers\Dashboard\ChatController::class, 'index']);
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat/{ad}', [ChatController::class, 'store'])->name('chat.store');
+
 });

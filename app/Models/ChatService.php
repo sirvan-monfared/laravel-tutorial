@@ -23,7 +23,12 @@ class ChatService
 
     public static function forUser(User $user)
     {
-        return Chat::with('lastMessage')->where('host_id', $user->id)->orWhere('guest_id', $user->id)->get();
+        return Chat::with('lastMessage')->where('host_id', $user->id)->orWhere('guest_id', $user->id)->latest('created_at')->get();
+    }
+
+    public static function findUserChatWithAdId(Ad $ad, User $user): ?Chat
+    {
+        return Chat::where('ad_id', $ad->id)->where('guest_id', $user->id)->first();
     }
 
 }

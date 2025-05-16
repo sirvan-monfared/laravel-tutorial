@@ -13,7 +13,7 @@ class Chat extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
-    public $fillable = ['id', 'ad_id', 'host', 'guest'];
+    public $fillable = ['id', 'ad_id', 'host_id', 'guest_id'];
 
     public function ad(): BelongsTo
     {

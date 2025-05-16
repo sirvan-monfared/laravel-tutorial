@@ -1,6 +1,6 @@
 <div>
     @if($chat)
-        <div class="fixed w-screen h-screen inset-0 lg:static lg:w-auto lg:h-auto bg-white z-50">
+        <div class="fixed w-screen h-screen inset-0 lg:static lg:w-auto lg:h-auto bg-white z-50" wire:poll.15s="markAsRead">
 
             <!-- modal header -->
             <div class="bg-white p-2 shadow-sm border border-gray-200 flex items-center justify-between">
@@ -43,11 +43,22 @@
 
             <!-- chat list -->
             <div class="mt-7 px-5 h-[500px] overflow-auto">
-                <ul class="flex flex-col gap-2">
+                <ul class="flex flex-col gap-2" id="chat-messages-list"
+                    x-init="$nextTick(() => {
+                        const list = document.getElementById('chat-messages-list');
+                        const messages = list.querySelectorAll('.received, .sent');
+
+                        if (messages.length > 3) {
+                            list.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                        }
+
+                        document.getElementById('chat-text-input').scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    })"
+                >
 
                     <li class="flex items-center justify-center">
-                                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
-                                        اسفند</span>
+                        <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
+                            اسفند</span>
                     </li>
 
 
@@ -65,8 +76,8 @@
 
                     @foreach($chat->messages as $message)
                         <li @class(['flex items-center gap-3 rounded-full rounded-tr-none py-2 px-4',
-                        'self-start bg-neutral-500 text-white' => $message->sender_id === auth()->id(),
-                        'self-end bg-white text-gray-700  shadow-md' => $message->sender_id !== auth()->id()
+                        'self-start bg-neutral-500 text-white sent' => $message->sender_id === auth()->id(),
+                        'self-end bg-white text-gray-700 shadow-md received' => $message->sender_id !== auth()->id()
 ])
                         >
                             @if($message->is_read)
@@ -87,40 +98,24 @@
                 </ul>
             </div>
 
-            <div class="mt-5 px-5">
-                <ul class="flex items-center gap-2">
-                    <li>
-                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
-                        اسفند</span>
-                    </li>
-                    <li>
-                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
-                        اسفند</span>
-                    </li>
-                    <li>
-                    <span class="bg-gray-200 text-gray-500  text-xs py-1 px-2 rounded-full">جمعه 12
-                        اسفند</span>
-                    </li>
-
-                </ul>
-            </div>
 
             <div class="mt-5 px-5">
-                <div class="flex items-center gap-2">
-                    <div
-                        class="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"/>
-                        </svg>
+                <form wire:submit="send">
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="chat-text-input" wire:model="body"
+                               class="flex-1 h-10 border-gray-300 px-5 focus:border-blue-400 rounded-md placeholder-gray-400"
+                               placeholder="پیامتان را درج کنید...">
 
+                        <button type="submit"
+                                class="w-10 h-10 bg-blue-500 text-white flex items-center justify-center rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="size-6 rotate-180">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/>
+                            </svg>
+                        </button>
                     </div>
-
-                    <input type="text"
-                           class="flex-1 h-10 border-gray-300 px-5 focus:border-blue-400 rounded-md placeholder-gray-400"
-                           placeholder="پیامتان را درج کنید...">
-                </div>
+                </form>
             </div>
 
         </div>

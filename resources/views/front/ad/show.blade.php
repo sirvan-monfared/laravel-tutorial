@@ -4,7 +4,7 @@
 
     <section class="container lg:max-w-screen-lg mx-auto">
         <div class="flex item-start gap-2">
-{{--          Right Panel  --}}
+            {{--          Right Panel  --}}
             <div>
                 @include('front.ad.show._slider')
 
@@ -128,9 +128,12 @@
                         <a href="#"
                            class="bg-blue-500 py-3 px-3 text-white font-medium w-full rounded-md text-center hover:shadow-xl hover:opacity-90">تماس
                             با آگهی دهنده</a>
-                        <a href="#"
-                           class="border-2 border-blue-500 py-3 px-3 text-center text-blue-500 hover:border-orange-500 hover:text-orange-500 font-medium w-full rounded-md">چت
-                            با آگهی دهنده</a>
+                        <form action="{{ route('dashboard.chat.store', $ad) }}" method="POST" class="w-full">
+                            @csrf
+                            <button type="submit"
+                               class="border-2 w-full border-blue-500 py-3 px-3 text-center text-blue-500 hover:border-orange-500 hover:text-orange-500 font-medium w-full rounded-md">چت
+                                با آگهی دهنده</button>
+                        </form>
                     </div>
                 </div>
             </div>
