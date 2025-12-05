@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Auth;
 use App\Enums\OtpStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Jobs\SendOTPSms;
 use App\Models\Otp;
 use App\Models\User;
 use App\Services\OtpService;
+use App\Services\SmsService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -29,11 +32,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request, OtpService $otpService)
     {
 
-        $otpCode = $otpService->generateFor($request->phone);
-
-        $otpService->savePhoneToSession($request->phone);
-
-        // send SMS
+        $otpService->sendTo($request->phone);
 
         return redirect()->route('otp.edit');
     }

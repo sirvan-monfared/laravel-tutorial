@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 require __DIR__.'/front.php';
 require __DIR__.'/dashboard.php';

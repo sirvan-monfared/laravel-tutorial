@@ -29,6 +29,8 @@ class OtpController extends Controller
 
             auth()->login($user, remember: true);
 
+            $otpService->deletePhoneFromSession();
+
             return redirect()->route('dashboard.ad.index');
 
         }catch(InvalidOtpCodeException $e) {
